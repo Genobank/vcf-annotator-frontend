@@ -1,0 +1,72 @@
+.Banner-title{
+    background-color: white;
+}
+
+.container-component{
+    background-image: url('/images/ancestry-info-fondo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    flex: 1;
+
+}
+
+.ancestry-border{
+    border-radius: 25px;
+}
+
+.out-focus-container {
+    position: relative;
+    overflow: hidden; /* Para asegurar que el pseudo-elemento no sobresalga */
+    flex: 1;
+    min-height: 600px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.out-focus-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('/images/services/somos/ancestriasampleCircle.png');
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: blur(10px); /* Aplica el efecto de difuminado */
+    -webkit-filter: blur(30px); /* Soporte para navegadores basados en WebKit */
+    z-index: -1; /* Asegura que el pseudo-elemento esté detrás del contenido */
+}
+
+.out-focus-container .inner-content {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    right: 100px;
+    bottom: 100px;
+    background-image: url('/images/services/somos/ancestriasampleCircle.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.blured_card{
+    background-color: #63636300;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+
+
+.input-group .form-control {
+    display: inline-block;
+    width: auto;
+    flex: 1;
+}
+
+.input-group .btn {
+    width: auto;
+}

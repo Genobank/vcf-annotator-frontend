@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GenoBank.io VCF Annotator - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon-72x72.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <!-- web3 methods -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js" integrity="sha512-jRzb6jM5wynT5UHyMW2+SD+yLsYPEU5uftImpzOcVTdu1J7VsynVmiuFTsitsoL5PJVQi+OtWbrpWq/I+kkF4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.2.0/ethers.umd.min.js" integrity="sha512-YrJ7ZzmtmVJdwCwu6B91ThUGLfNjsTdHf1IdPf3J7AZQIpVDvahcBLWoKC1ebZ9RN6upm9ZheIFKSf7s7k/ZYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../theme/theme.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fades.css">
+    <link rel="stylesheet" href="css/mediaqueries.css">
+  </head>
+  <body>
+    <div class="container-fluid container-custom-width">
+      <header class="header fade-in">
+        <img class="logo" src="../images/GenoBank.io_logo@2x.svg" alt="GenoBank.io Logo">
+        <h1 class="page-title">VCF Annotator Portal</h1>
+      </header>
+      
+      <main class="main-content fade-in-delay-1">
+        <div class="alert alert-custom">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div class="alert-text">
+            <strong>Important Notice:</strong> Genetic testing companies may share your genetic data with third parties, potentially putting your genetic privacy at risk.
+          </div>
+        </div>
+        
+        <p class="description">
+          This tool allows you to formally rescind all previously granted consents and register your claim through GenoBank.io's patented BioNFT™ technology and Story Protocol using your VCF files.
+        </p>
+        
+        <div class="how-it-works container">
+          <h2>How It Works:</h2>
+          <div class="steps">
+            <div class="step-card fade-in-delay-1">
+              <div class="step-number">1</div>
+              <h3 class="step-title">Legal Notice</h3>
+              <p class="step-description">Digitally sign a formal rescission notice</p>
+            </div>
+            
+            <div class="step-card fade-in-delay-2">
+              <div class="step-number">2</div>
+              <h3 class="step-title">Claim Generation</h3>
+              <p class="step-description">Create a unique DNA fingerprint from your VCF file (processed locally on your device, not uploaded)</p>
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step-card fade-in-delay-3">
+              <div class="step-number">3</div>
+              <h3 class="step-title">Verification</h3>
+              <p class="step-description">Register your claim via Story Protocol using GenoBank.io's patented BioNFT™ technology</p>
+            </div>
+
+            <div class="step-card fade-in-delay-3">
+              <div class="step-number">4</div>
+              <h3 class="step-title">Service Request</h3>
+              <p class="step-description">Request one of our annotation packages for your VCF file</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="privacy-notice">
+          <i class="fa-solid fa-shield-alt"></i>
+          <div>
+            <h3 class="privacy-notice-title">Privacy Commitment:</h3>
+            <p class="privacy-notice-text">
+              Your VCF file stays securely on your device at all times. GenoBank.io never accesses or uploads your complete genetic data unless you explicitly choose to store your VCF file safely in one of our encrypted GenoVaults. Doing so allows you to interact privately and securely with our suite of privacy-preserving applications.
+              <br><br>
+              For standard use, we only generate a cryptographic fingerprint derived from 96 carefully selected genetic markers. This fingerprint creates a unique identifier that protects your privacy while enabling secure verification of your claim.
+            </p>
+          </div>
+        </div>
+        
+        <div class="login-section fade-in-delay-3">
+          <h3 class="login-title">Login</h3>
+          <p class="login-subtitle">Sign in with GenoBank using a wallet or your Google account</p>
+          <button class="login-button" onclick="prepareLogin()">
+            <!-- <img src="../images/GenoBank.io_white_logo_and_name.svg" alt="GenoBank.io">  -->
+            Let's start
+          </button>
+        </div>
+
+        <!-- agregar la seccion para ir a ver los FAQs -->
+        <div class="faq-section fade-in-delay-4 text-center">
+          <a href="../FAQs/" class="faq-button fs-6">FAQs</a>
+        </div>
+      </main>
+
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/env.js"></script>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/services/registration_service.js?v1.0"></script>
+    <script type="text/javascript" src="js/genobank-login-auth.js"></script>
+    <script type="text/javascript" src="genobank_auth/login.js"></script>
+    <script type="text/javascript" src="js/custom.js?v1.0"></script>
+  </body>
+</html>

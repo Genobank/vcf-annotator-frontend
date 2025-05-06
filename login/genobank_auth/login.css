@@ -1,0 +1,120 @@
+/* body {
+  background: var(--background-gradient);
+  --background-gradient: linear-gradient(to bottom right, #00ffff 0%, #59d9d9 25%, #6d80e6 50%, #c032e3 75%, #ff00cc 100%);
+} */
+
+body {
+  background: #f5f5f7
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  height: calc(100vh - 56px);
+  
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  
+
+}
+
+.card {
+  border: none !important;
+  max-width: 550px;
+  margin-top: 25%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 15px rgba(0,0,0,0.03);
+
+  
+
+  /* width: 100%; */
+
+}
+
+/* .card-body{
+  height: calc(100vh/ 2 - 56px);
+} */
+
+#login-container {
+  background-color: #009abb;
+
+}
+
+.login-button {
+  background: linear-gradient(to bottom right, #49ba80 0%, #009abb 33%, #344da1 66%, #b03c96 100%);
+}
+
+.btn-icon {
+  max-height: 22px;
+}
+
+.btn-light{
+  height: 50px;
+  border: 1px solid #d6e2f1;
+  border-radius: 10px!important;
+}
+
+.toast {
+  position: fixed;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fill-width {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.fill-height {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+/* 
+@media (max-width: 600px) {
+  .logo-container {
+    visibility: hidden; 
+    opacity: 0; 
+  }
+
+
+
+  .buttons-container {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+  }
+
+  .buttons-container .card-body {
+    border-radius: 0.5rem !important;
+    border-top-left-radius: 0 !important;
+  }
+  .card-body{
+    border-radius: 50px;
+    border-top-left-radius: 50px !important;
+    border-top-right-radius: 15rem !important;
+    border-bottom-right-radius: 15rem !important;
+    border-bottom-left-radius: 15rem !important;
+  }
+
+  .login-card-container {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .card {
+    max-width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 15rem !important;;
+  }
+} */

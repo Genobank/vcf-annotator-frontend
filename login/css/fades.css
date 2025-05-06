@@ -1,0 +1,70 @@
+/* fades.css - Animaciones mejoradas */
+
+/* Animación de entrada desde la izquierda */
+@keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .fade-in-left {
+    opacity: 0;
+    animation: fadeInLeft 0.7s ease-out forwards;
+    animation-delay: 0.4s;
+  }
+  
+  /* Animación de entrada desde la derecha */
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .fade-in-right {
+    opacity: 0;
+    animation: fadeInRight 0.7s ease-out forwards;
+    animation-delay: 0.4s;
+  }
+  
+  /* Animación de entrada desde arriba */
+  @keyframes fadeInTop {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .fade-in-top {
+    opacity: 0;
+    animation: fadeInTop 0.7s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+  
+  /* Animación de aparición con zoom */
+  @keyframes zoomFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .zoom-fade-in {
+    opacity: 0;
+    animation: zoomFadeIn 0.8s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+  

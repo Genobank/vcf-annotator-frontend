@@ -1,0 +1,5 @@
+function purchaseModal(){
+    return /*html */`
+        
+    `
+}

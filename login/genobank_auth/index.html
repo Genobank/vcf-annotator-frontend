@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js" integrity="sha512-jRzb6jM5wynT5UHyMW2+SD+yLsYPEU5uftImpzOcVTdu1J7VsynVmiuFTsitsoL5PJVQi+OtWbrpWq/I+kkF4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.2.0/ethers.umd.min.js" integrity="sha512-YrJ7ZzmtmVJdwCwu6B91ThUGLfNjsTdHf1IdPf3J7AZQIpVDvahcBLWoKC1ebZ9RN6upm9ZheIFKSf7s7k/ZYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./login.css">
+    <!-- magic libraries -->
+    <script src="https://auth.magic.link/sdk"></script>
+    <script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@magic-ext/oauth/dist/extension.js"></script>
+    <!-- wallet connect cdns-->
+    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/client@1.4.1/dist/umd/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.5.1/dist/umd/index.min.js"></script>
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex align-items-center d-flex justify-content-center login-container">
+            <div class="card w-100">
+                <div class="row g-0 login-card-container">
+                    <!-- <div class="col-4 col-sm-4 col-md-4 col-lg-4 logo-container">
+                        <img src="./GenoBank.io.jpg" class="img-fluid rounded-start-4 fill-height" alt="...">
+                    </div> -->
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 buttons-container">
+                        <div class="card-body border-0  ">
+                            <h1 class="display-6 text-center text fs-3 mt-5 mb-5">
+                                <img src="/images/GenoBank.io_logo@2x.svg" class="id-genobank-sm-logo" >
+                                
+                            </h1>
+                            <div class="form-group">
+                                <div class="d-grid gap-2">
+                                    
+                                    <!-- input to for an email -->
+                                    <div class="mb-0">
+                                        <img src="./envelope-solid.svg" class="btn-icon" alt="...">
+                                        <label for="email" class="form-label">
+                                            Email address
+                                        </label>
+                                        <input type="email" class="form-control" id="emailInput" placeholder="Enter email" required oninput="validateEmailInput()">
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email address.
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline-secondary text-start rounded-4" type="button" onclick="loginUsingEmailHandler()" id="emailLoginButton"  disabled>
+                                        <div class="display-6 fs-5 text-center">
+                                            Login with Email
+                                            <div class="spinner-grow spinner-grow-sm" role="status" style="display: none;" id="emailLoginSpiner">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    
+
+                                    <div class="text-center fs-5 mt-4">
+                                        <p class="text-center">OR</p>
+                                        <hr>
+                                    </div>
+                                    <button class="btn btn-light text-start text-dark rounded-4" type="button" onclick="loginUsingMetamask()">
+                                        <div class="h1 fs-5 text-center">
+                                            <img src="./wallet-solid-dark.svg" class="btn-icon" alt="...">
+                                            Browser Wallet
+                                            <div class="spinner-grow spinner-grow-sm" role="status" style="display: none;" id="metamaskLoginSpiner">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <button class="btn btn-light text-start rounded-4 text-dark" type="button" onclick="loginUsingOAuthClient()">
+                                        <div class="h1 fs-5 text-center">
+                                            <img src="./google_logo.png" class="btn-icon" alt="...">
+                                            Google
+                                            <div class="spinner-grow spinner-grow-sm" role="status" style="display: none;" id="googleLoginSpiner">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <button class="mb-4 btn btn-light text-start rounded-4 text-dark" type="button" onclick="connectAndSign()">
+                                        <div class="h1 fs-5 text-center">
+                                            <img src="./walletconnect_logo.png" class="btn-icon" alt="...">
+                                            Wallet Connect
+                                            <div class="spinner-grow spinner-grow-sm" role="status" style="display: none;" id="walletConectLoginSpiner">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="toast align-items-center text-bg-danger border-0 " role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    <section>
+        <script src="login.js"></script>
+        <script src="walletConnectConnection.js" type="module"></script>
+    </section>
+</body>
+</html>

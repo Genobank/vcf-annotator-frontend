@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>23andMe Data Rights Reclamation | GenoBank.io</title>
+  
+  <!-- Standard Bootstrap and core dependencies -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper@1.7.0/dist/css/bs-stepper.min.css">
+  
+  <style>
+    .consent-text {
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      margin-bottom: 20px;
+    }
+    .hash-display {
+      word-break: break-all;
+      font-family: monospace;
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .verification-badge {
+      display: none;
+      padding: 10px;
+      background-color: #d4edda;
+      color: #155724;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .file-select-zone {
+      border: 2px dashed #ccc;
+      border-radius: 5px;
+      padding: 30px;
+      text-align: center;
+      background-color: #f9f9f9;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .file-select-zone:hover {
+      border-color: #0d6efd;
+      background-color: #f0f8ff;
+    }
+    .privacy-notice {
+      background-color: #f8f9fa;
+      border-left: 4px solid #0d6efd;
+      padding: 15px;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+    input[type="checkbox"] {
+      box-shadow: none;
+      float: left;
+      min-height: 24px;
+      margin-right: 8px;
+    }
+    .stepper-logo {
+      height: 28px;
+      margin-right: 5px;
+    }
+    .faq-section {
+      margin-top: 40px;
+      border-top: 1px solid #eee;
+      padding-top: 30px;
+    }
+    .accordion-button:not(.collapsed) {
+      background-color: #f0f8ff;
+      color: #0d6efd;
+      font-weight: 500;
+    }
+    .accordion-button:focus {
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body class="insidepage">
+  <section class="py-md-5">
+    <div class="container">
+      <!-- Header with logo -->
+      <div class="row mb-4">
+        <div class="col-md-12 d-flex justify-content-center align-items-center">
+          <nav class="navbar navbar-light">
+            <div class="container text-center">
+              <a class="navbar-brand" href="#">
+                <img src="https://genobank.io/images/GenoBank.io_logo@2x.svg" height="30" class="d-inline-block align-top" alt="GenoBank.io">
+              </a>
+              <h5 class="my-0">23andMe Data Rights Reclamation Portal</h5>
+            </div>
+          </nav>
+        </div>
+      </div>
+      
+      <!-- User wallet connection -->
+      <div class="bs-stepper-header mb-4">
+        <div style="margin-left: auto; margin-right: 0px;">
+          <div class="text-center">
+            <small>Wallet Connection:</small>
+          </div>
+          <div class="dropdown">
+            <button id="user-wallet" style="min-width: 250px; min-height: 50px;" class="rounded-pill btn btn-dark user-label" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Connect MetaMask
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#" onclick="disconnectWallet()" style="min-width: 220px;">
+                  Disconnect
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- MetaMask alert -->
+      <div class="container" style="align-items: center; display: none;" id="metamask-alert">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card text-center mt-5">
+              <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">MetaMask Required</h5>
+              </div>
+              <div class="card-body">
+                <img src="https://altcoinsbox.com/wp-content/uploads/2023/03/metamask-logo-300x300.webp" width="80" class="mb-4"/>
+                <p class="card-text">You need to install MetaMask to sign the consent and verify ownership. After installation, please reload this page.</p>
+                <a href="https://metamask.io/download/" target="_blank" class="btn btn-primary">
+                  Install MetaMask
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main stepper content -->
+      <div class="row">
+        <div class="col-md-12 mb-lg-5 mt-1 mt-md-0" id="accordionExample">
+          <div class="bs-stepper linear" id="stepper-container">
+            <div class="steps bs-stepper-header" role="tablist">
+              <progress id="progress" value=0 max=100 style="width: 100%;"></progress>
+              
+              <!-- Step 1: Welcome -->
+              <div class="step step-item" data-target="#welcome-part">
+                <div class="step-trigger">
+                  <button class="step-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#welcome-part" aria-expanded="true" aria-controls="welcome-part">
+                    <span class="bs-stepper-circle"><i class="fa fa-user"></i></span>
+                  </button>
+                </div>
+                <div class="step-title">Welcome</div>
+              </div>
+              
+              <!-- Step 2: Legal Notice -->
+              <div class="step step-item" data-target="#legal-part">
+                <div class="step-trigger">
+                  <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#legal-part" aria-expanded="false" aria-controls="legal-part">
+                    <span class="bs-stepper-circle"><i class="fa-solid fa-scale-balanced"></i></span>
+                  </button>
+                </div>
+                <div class="step-title">Legal Notice</div>
+              </div>
+              
+              <!-- Step 3: Generate Claim -->
+              <div class="step step-item" data-target="#claim-part">
+                <div class="step-trigger">
+                  <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#claim-part" aria-expanded="false" aria-controls="claim-part">
+                    <span class="bs-stepper-circle"><i class="fa-solid fa-fingerprint"></i></span>
+                  </button>
+                </div>
+                <div class="step-title">Generate Claim</div>
+              </div>
+              
+              <!-- Step 4: Verification -->
+              <div class="step step-item" data-target="#verification-part">
+                <div class="step-trigger">
+                  <button class="step-button text-center collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#verification-part" aria-expanded="false" aria-controls="verification-part">
+                    <span class="bs-stepper-circle"><i class="fa-solid fa-check-double"></i></span>
+                  </button>
+                </div>
+                <div class="step-title">Verification</div>
+              </div>
+            </div>
+            
+            <!-- Stepper content sections -->
+            <div class="bs-stepper-content">
+              <!-- Welcome content -->
+              <div id="welcome-part" class="content col-md-12 cardbox py-4 py-md-5 px-3 px-md-5 modalbox" role="tabpanel" aria-labelledby="welcome-part-trigger" data-bs-parent="#accordionExample">
+                <div class="row">
+                  <div class="col-md-8 mb-4 mx-auto">
+                    <div class="text-center mb-4">
+                      <img class="img-fluid" style="max-width: 150px;" src="https://genobank.io/images/biodata.svg" alt="GenoBank.io Logo">
+                      <h2 class="mt-4">Reclaim Your 23andMe Genetic Data Rights</h2>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                      <strong>Important Notice:</strong> 23andMe has filed for Chapter 11 bankruptcy, potentially putting your genetic data at risk of being sold to third parties.
+                    </div>
+                    
+                    <p>This tool allows you to formally rescind all previously granted consents to 23andMe and register your claim through GenoBank.io's patented BioNFT™ technology and Story Protocol.</p>
+                    
+                    <h5 class="mt-4">How It Works:</h5>
+                    <ol>
+                      <li><strong>Legal Notice:</strong> Digitally sign a formal rescission notice</li>
+                      <li><strong>Claim Generation:</strong> Create a unique DNA fingerprint from your 23andMe raw data file (processed locally on your device, not uploaded)</li>
+                      <li><strong>Verification:</strong> Register your claim via Story Protocol using GenoBank.io's patented BioNFT™ technology</li>
+                    </ol>
+                    
+                    <div class="privacy-notice">
+                      <i class="fa-solid fa-shield-alt me-2"></i>
+                      <strong>Privacy Commitment:</strong> Your 23andMe raw data file remains on your device. We only generate a cryptographic fingerprint from 96 genetic markers to establish a unique identifier for your claim.
+                    </div>
+                    
+                    <!-- FAQ Section -->
+                    <div class="faq-section mt-5">
+                      <h4 class="mb-4">Frequently Asked Questions</h4>
+                      <div class="accordion" id="faqAccordion">
+                        <!-- FAQ 1 -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                              Do I need to download and request deletion on my 23andMe account?
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                              <p>Yes, we strongly recommend that you:</p>
+                              <ol>
+                                <li>Download your raw data from your 23andMe account</li>
+                                <li>Use our tool to establish ownership</li>
+                                <li>Request deletion of your data from 23andMe's servers</li>
+                              </ol>
+                              <p>This comprehensive approach provides the strongest protection for your genetic data during 23andMe's bankruptcy proceedings.</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- FAQ 2 -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Would GenoBank.io now have rights over my data?
+                            </button>
+                          </h2>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                              <p>No, absolutely not. Only you retain rights to your genetic data through your blockchain wallet. GenoBank.io serves solely as the technological infrastructure provider, enabling you to establish and maintain ownership of your genetic information.</p>
+                              <p>Our patented BioNFT™ technology creates a verifiable claim of ownership that only you control through your private keys. We cannot access, use, or transfer your data without your explicit permission.</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- FAQ 3 -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              In case of a Class Action Suit against the new buyer of 23andMe, is this claim legally binding?
+                            </button>
+                          </h2>
+                          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                              <p>Our BioNFT™ claim provides strong evidence of your intent to rescind consent, but its acceptance in legal proceedings depends on the specific court and judge.</p>
+                              <p>NFT-based ownership claims have been recognized in some legal proceedings, but the legal landscape is still evolving. This claim strengthens your position by:</p>
+                              <ul>
+                                <li>Creating a verifiable timestamp of your rescission notice</li>
+                                <li>Establishing cryptographic proof of your genetic data ownership</li>
+                                <li>Demonstrating proactive measures to protect your rights</li>
+                              </ul>
+                              <p>While we can't guarantee how every judge will view blockchain-based evidence, this claim provides significantly more protection than taking no action.</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- FAQ 4 -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                              Why is GenoBank.io offering this service for free?
+                            </button>
+                          </h2>
+                          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                              <p>We're providing this service free of charge because we believe in building the largest syndicate of DNA data owners who control their own genetic information. Our mission is to empower individuals with true ownership of their most personal data.</p>
+                              <p>This aligns with our long-term vision of creating a privacy-preserving ecosystem where:</p>
+                              <ul>
+                                <li>Individuals maintain complete control over their genetic data</li>
+                                <li>Data owners receive fair compensation if they choose to share their data</li>
+                                <li>Network participants gain access to optional privacy-preserving applications</li>
+                              </ul>
+                              <p>By building this community, we aim to transform the genomics industry from its current extractive model to one that respects individual sovereignty and privacy while enabling beneficial scientific and medical advances.</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- FAQ 5 -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                              What does GenoBank.io's proprietary 96 SNPs Bloom Filter and BioNFT protocol do?
+                            </button>
+                          </h2>
+                          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                              <p>Our patented technology creates a unique, privacy-preserving fingerprint of your genetic data through a sophisticated two-step process:</p>
+                              <ol>
+                                <li><strong>96 SNPs Selection:</strong> We identify 96 specific Single Nucleotide Polymorphisms (SNPs) from your genetic data. These carefully selected markers provide enough uniqueness to identify your genome without revealing sensitive health information.</li>
+                                <li><strong>Bloom Filter Hashing:</strong> These SNPs are then processed through a probabilistic data structure called a Bloom filter, which creates a cryptographic hash. This hash serves as a unique identifier that can verify your genome without storing or exposing the actual genetic data.</li>
+                              </ol>
+                              <p>The BioNFT™ protocol then:</p>
+                              <ul>
+                                <li>Creates a non-fungible token representing ownership of your genetic data</li>
+                                <li>Links this token to your blockchain wallet address</li>
+                                <li>Registers the claim on the Story Protocol, establishing a timestamped record</li>
+                                <li>Enables verifiable proof of ownership without revealing genetic information</li>
+                              </ul>
+                              <p>This approach provides cryptographic proof of ownership while maintaining privacy, allowing you to prove you own specific genetic data without exposing the data itself.</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- FAQ 6 -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                              Am I required to upload my data to claim ownership?
+                            </button>
+                          </h2>
+                          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                              <p>No, uploading your data is completely optional. Our process works as follows:</p>
+                              <ul>
+                                <li>Your raw genetic data file is processed entirely in your browser</li>
+                                <li>We extract only the minimal necessary information (96 SNPs) to create a DNA fingerprint</li>
+                                <li>This fingerprint is hashed and used to create your claim on Story Protocol</li>
+                                <li>The original file remains on your device unless you opt-in to upload</li>
+                              </ul>
+                              <p>We offer optional encrypted storage if you'd like to keep a secure backup of your data, but this is not required to establish ownership. Our focus is on creating the ownership claim while preserving your privacy and control over your genetic information.</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- FAQ 7 -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingSeven">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                              What is "1 Genome, 1 BioNFT, 1 vote" governance?
+                            </button>
+                          </h2>
+                          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                              <p>"1 Genome, 1 BioNFT, 1 vote" represents our democratic governance framework for the future of genetic data management:</p>
+                              <ul>
+                                <li><strong>1 Genome:</strong> Each individual's genetic data is unique and valuable, representing their biological identity</li>
+                                <li><strong>1 BioNFT:</strong> Each genome is represented by a single non-fungible token that establishes verifiable ownership</li>
+                                <li><strong>1 Vote:</strong> Each BioNFT holder gets equal voting rights in the ecosystem's governance decisions</li>
+                              </ul>
+                              <p>This governance structure ensures:</p>
+                              <ul>
+                                <li>Equal representation regardless of wealth or status</li>
+                                <li>Democratic decision-making on data sharing policies</li>
+                                <li>Community control over the development of the platform</li>
+                                <li>Fair distribution of benefits from any commercial applications</li>
+                              </ul>
+                              <p>By establishing this governance model, we're creating a more equitable system where the individuals whose data creates value have a direct say in how that value is managed and distributed.</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <!-- FAQ 8 -->
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingEight">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                              How does this differ from standard NFTs, and what makes BioNFTs™ legally relevant?
+                            </button>
+                          </h2>
+                          <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                              <p>BioNFTs™ are fundamentally different from standard NFTs in several important ways:</p>
+                              <ul>
+                                <li><strong>Patented Technology:</strong> BioNFTs™ are protected by multiple US patents (US-11984203-B1, US-11915808-B1), giving them stronger legal standing than typical NFTs</li>
+                                <li><strong>Biometric Verification:</strong> They incorporate validated biometric data (96 SNPs) that can be mathematically linked to a specific individual</li>
+                                <li><strong>Legal Framework:</strong> BioNFTs™ are designed with legal enforceability in mind, including structured metadata that conforms to jurisdictional requirements</li>
+                                <li><strong>Privacy Compliance:</strong> The technology is built to be compliant with GDPR, HIPAA, and other regulatory frameworks</li>
+                                <li><strong>Real-World Application:</strong> They represent actual legal rights to tangible biometric data rather than digital art or collectibles</li>
+                              </ul>
+                              <p>These distinctions make BioNFTs™ more likely to be recognized in legal proceedings as valid evidence of data ownership and consent revocation, though as with any emerging technology, judicial recognition may vary across jurisdictions.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-4">
+                  <button class="btn btn-lg btn-primary btn-next" id="welcome-next">Get Started</button>
+                </div>
+              </div>
+              
+              <!-- Legal Notice content -->
+              <div id="legal-part" class="content col-md-12 cardbox py-4 py-md-5 px-3 px-md-5 modalbox" role="tabpanel" aria-labelledby="legal-part-trigger" data-bs-parent="#accordionExample">
+                <div class="row">
+                  <div class="col-md-10 mx-auto">
+                    <h3 class="mb-3">Formal Notice of Rescission</h3>
+                    <p>Please review the following legal notice that will be registered with your claim.</p>
+                    
+                    <div class="consent-text">
+                      <h5>FORMAL NOTICE OF RESCISSION AND ASSERTION OF DATA RIGHTS</h5>
+                      <p><strong>Effective Date: <span id="current-date"></span></strong></p>
+                      
+                      <p>Notwithstanding any prior consent or agreement, as of the date of acceptance of this contract ("Effective Date"), User expressly rescinds, revokes, and withdraws any and all rights, permissions, consents, licenses, or authorizations previously granted to 23andMe, Inc. ("23andMe"), including its subsidiaries, affiliates, service providers, related entities, successors, and assigns, in connection with any DNA data uploaded, genetic information provided, or Medical Record Information shared, pursuant to 23andMe's Terms of Service, Privacy Statement, Medical Record Privacy Notice, or any other related policy or agreement.</p>
+                      
+                      <ol>
+                        <li><strong>BASIS FOR RESCISSION:</strong> The basis for this rescission is the initiation of bankruptcy proceedings by 23andMe under Chapter 11 of the United States Bankruptcy Code, which constitutes a material change in circumstances affecting the rights and protections originally relied upon by User. This substantial and unforeseen change in circumstances renders the original consent void or voidable under principles of contract law and applicable data protection regulations.</li>
+                        
+                        <li><strong>IMMEDIATE CESSATION OF USE:</strong> 23andMe shall immediately cease any further use, disclosure, processing, storage, or transfer of User's DNA data, genetic information, Medical Record Information, and any associated personal information, except as strictly required by applicable law or regulatory obligations. This includes but is not limited to research projects, commercial partnerships, and any data licensing arrangements.</li>
+                        
+                        <li><strong>PROHIBITION ON TRANSFER IN BANKRUPTCY:</strong> User explicitly prohibits the transfer, sale, assignment, or inclusion of their genetic data, DNA samples, or personal information as an asset in any bankruptcy proceeding, restructuring plan, or subsequent sale of 23andMe's assets. User asserts that their personal genetic information constitutes personal property that cannot be liquidated or transferred without explicit new consent.</li>
+                        
+                        <li><strong>DATA PORTABILITY AND DELETION RIGHTS:</strong> Pursuant to applicable data protection laws, including but not limited to the California Consumer Privacy Act (CCPA), General Data Protection Regulation (GDPR), and other relevant regulations, User demands:
+                          <ol type="a">
+                            <li>The immediate provision of a complete copy of all User's genetic data and personal information in a machine-readable, interoperable format;</li>
+                            <li>Verification of permanent deletion of all User's genetic data, DNA samples, and personal information from all 23andMe systems, databases, backups, and archives following the provision of said data.</li>
+                          </ol>
+                        </li>
+                        
+                        <li><strong>SUCCESSOR LIABILITY:</strong> This rescission and all rights assertions herein shall apply to any successor entity, purchaser of assets, reorganized entity, or other third party that may acquire any portion of 23andMe's assets, operations, or data through bankruptcy proceedings or otherwise.</li>
+                        
+                        <li><strong>RESERVATION OF RIGHTS:</strong> User expressly reserves all rights and remedies available under applicable law, including but not limited to rights under data protection laws, consumer protection statutes, breach of contract claims, and rights to seek damages or equitable relief for any unauthorized use or transfer of User's data.</li>
+                        
+                        <li><strong>NOTICE OF OWNERSHIP REGISTRATION:</strong> User hereby provides notice that they have registered ownership of their genetic data through GenoBank.io's BioNFT™ technology, establishing an immutable record of data ownership on blockchain infrastructure. This registration serves as evidence of User's assertion of exclusive ownership rights in their genetic information.</li>
+                        
+                        <li><strong>GOVERNING LAW:</strong> This rescission shall be governed by the laws of User's jurisdiction of residence and applicable federal laws.</li>
+                      </ol>
+                    </div>
+                    
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="legal-consent">
+                      <label class="form-check-label" for="legal-consent">
+                        I acknowledge that I have read and understood the above legal notice and wish to rescind all prior consents granted to 23andMe and assert full ownership rights over my genetic data through GenoBank.io's BioNFT™ technology.
+                      </label>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                      <button id="sign-button" class="btn btn-outline-primary" disabled>
+                        <i class="fa-solid fa-signature me-2"></i>
+                        <span class="sign-text">Sign Legal Notice with MetaMask</span>
+                        <span id="sign-spinner" class="spinner-border spinner-border-sm ms-2" style="display: none;"></span>
+                      </button>
+                    </div>
+                    
+                    <div id="sign-console" class="mt-3"></div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                      <button id="legal-next" class="btn btn-primary" disabled>Continue to Next Step</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Generate Claim content -->
+              <div id="claim-part" class="content col-md-12 cardbox py-4 py-md-5 px-3 px-md-5 modalbox" role="tabpanel" aria-labelledby="claim-part-trigger" data-bs-parent="#accordionExample">
+                <div class="row">
+                  <div class="col-md-10 mx-auto">
+                    <h3 class="mb-3">Generate DNA Fingerprint Claim</h3>
+                    
+                    <div class="alert alert-info">
+                      <i class="fa-solid fa-circle-info me-2"></i>
+                      <strong>Privacy-Preserving Process:</strong> Your raw data file will be processed locally in your browser. Only a cryptographic fingerprint based on 96 SNPs is used for verification.
+                    </div>
+                    
+                    <div class="privacy-notice">
+                      <h6><i class="fa-solid fa-lock me-2"></i> How Your Data Stays Protected:</h6>
+                      <ul>
+                        <li>Your 23andMe raw data file never leaves your device</li>
+                        <li>Only a cryptographic fingerprint is generated for verification</li>
+                        <li>No sensitive genetic information is extracted or stored</li>
+                        <li>The process is completely transparent and runs in your browser</li>
+                      </ul>
+                    </div>
+                    
+                    <div class="mt-4 mb-4">
+                      <label class="form-label">Select your 23andMe raw data file:</label>
+                      <div class="file-select-zone" id="file-drop-zone">
+                        <input type="file" id="data-file" class="d-none" accept=".txt,.csv">
+                        <i class="fa-solid fa-file-arrow-up fa-3x mb-3 text-primary"></i>
+                        <h5>Drag & Drop Your File Here</h5>
+                        <p>or</p>
+                        <button class="btn btn-outline-primary" onclick="document.getElementById('data-file').click()">
+                          Select File
+                        </button>
+                        <p class="mt-2 text-muted small">Supported formats: .txt or .csv from 23andMe</p>
+                      </div>
+                      <div id="file-info" class="mt-3" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                      <button id="process-file" class="btn btn-primary" disabled>
+                        <i class="fa-solid fa-dna me-2"></i>
+                        <span class="process-text">Generate DNA Fingerprint</span>
+                        <span id="process-spinner" class="spinner-border spinner-border-sm ms-2" style="display: none;"></span>
+                      </button>
+                    </div>
+                    
+                    <div class="progress mt-4" style="display: none;" id="process-progress-container">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated" id="process-progress" role="progressbar" style="width: 0%">0%</div>
+                    </div>
+                    <div class="text-center mt-2">
+                      <span id="process-status"></span>
+                    </div>
+                    
+                    <div class="form-check mt-4">
+                      <input class="form-check-input" type="checkbox" id="optional-upload">
+                      <label class="form-check-label" for="optional-upload">
+                        <strong>Optional:</strong> I would like to securely upload my raw data file to GenoBank.io for enhanced analysis and additional protection.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Verification content -->
+              <div id="verification-part" class="content col-md-12 cardbox py-4 py-md-5 px-3 px-md-5 modalbox" role="tabpanel" aria-labelledby="verification-part-trigger" data-bs-parent="#accordionExample">
+                <div class="row">
+                  <div class="col-md-10 mx-auto">
+                    <div class="text-center mb-4">
+                      <div id="success-animation">
+                        <i class="fa-solid fa-circle-check fa-5x text-success"></i>
+                      </div>
+                      <h3 class="mt-3">Claim Successfully Registered!</h3>
+                    </div>
+                    
+                    <div class="alert alert-success">
+                      <p class="mb-0">Your 23andMe data rights rescission has been recorded using GenoBank.io's patented BioNFT™ technology and registered via Story Protocol.</p>
+                    </div>
+                    
+                    <div class="card mb-4">
+                      <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                          <img src="https://genobank.io/images/GenoBank.io_favicon.png" class="stepper-logo">
+                          BioNFT™ Verification Details
+                        </h5>
+                      </div>
+                      <div class="card-body">
+                        <div class="row mb-3">
+                          <div class="col-md-4"><strong>Owner Address:</strong></div>
+                          <div class="col-md-8" id="owner-wallet"></div>
+                        </div>
+                        <div class="row mb-3">
+                          <div class="col-md-4"><strong>Registration Date:</strong></div>
+                          <div class="col-md-8" id="registration-date"></div>
+                        </div>
+                        <div class="row mb-3">
+                          <div class="col-md-4"><strong>File Hash:</strong></div>
+                          <div class="col-md-8">
+                            <div class="hash-display" id="file-hash"></div>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <div class="col-md-4"><strong>96SNP BloomFilter Hash:</strong></div>
+                          <div class="col-md-8">
+                            <div class="hash-display" id="bloom-hash"></div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4"><strong>Story Protocol ID:</strong></div>
+                          <div class="col-md-8">
+                            <div class="hash-display" id="story-protocol-id"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="verification-badge" id="verification-complete">
+                      <i class="fa-solid fa-shield-check me-2"></i> Verified on GenoBank.io Blockchain Network
+                    </div>
+                    
+                    <div class="row mt-4">
+                      <div class="col-md-6">
+                        <div class="d-grid">
+                          <a href="#" id="download-certificate" class="btn btn-success">
+                            <i class="fa-solid fa-download me-2"></i> Download Ownership Certificate
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="d-grid">
+                          <a href="#" id="download-legal-notice" class="btn btn-outline-primary">
+                            <i class="fa-solid fa-file-contract me-2"></i> Download Legal Notice
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="text-center mt-5">
+                      <p>For questions or support, contact us at <a href="mailto:support@genobank.io">support@genobank.io</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- JavaScript for the application -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bs-stepper@1.7.0/dist/js/bs-stepper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <script>
+    // Main JavaScript functionality - processes everything locally without uploading
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize the stepper
+      const stepper = new Stepper(document.querySelector('.bs-stepper'), {
+        linear: true,
+        animation: true
+      });
+      
+      // Set current date in the legal notice
+      const today = new Date();
+      document.getElementById('current-date').textContent = today.toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+      
+      // Variables to store data
+      let userWalletAddress = null;
+      let signedMessage = null;
+      let fileHash = null;
+      let bloomFilterHash = null;
+      let storyProtocolId = null;
+      let selectedFile = null;
+      
+      // Check if MetaMask is installed
+      if (typeof window.ethereum === 'undefined') {
+        document.getElementById('metamask-alert').style.display = 'block';
+        document.getElementById('stepper-container').style.display = 'none';
+      }
+      
+      // Connect wallet button
+      document.getElementById('user-wallet').addEventListener('click', async function() {
+        if (typeof window.ethereum !== 'undefined') {
+          try {
+            // Request account access
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            userWalletAddress = accounts[0];
+            document.getElementById('user-wallet').textContent = `${userWalletAddress.substring(0, 6)}...${userWalletAddress.substring(38)}`;
+            
+            // Update owner wallet in verification step
+            document.getElementById('owner-wallet').textContent = userWalletAddress;
+          } catch (error) {
+            console.error('Error connecting wallet:', error);
+          }
+        } else {
+          document.getElementById('metamask-alert').style.display = 'block';
+        }
+      });
+      
+      // Disconnect wallet
+      window.disconnectWallet = function() {
+        userWalletAddress = null;
+        document.getElementById('user-wallet').textContent = 'Connect MetaMask';
+        document.getElementById('owner-wallet').textContent = '';
+      };
+      
+      // Welcome next button
+      document.getElementById('welcome-next').addEventListener('click', function() {
+        stepper.next();
+        updateProgressBar(25);
+      });
+      
+      // Legal consent checkbox
+      document.getElementById('legal-consent').addEventListener('change', function() {
+        document.getElementById('sign-button').disabled = !this.checked;
+      });
+      
+      // Sign button
+      document.getElementById('sign-button').addEventListener('click', async function() {
+        if (!userWalletAddress) {
+          alert('Please connect your wallet first');
+          return;
+        }
+        
+        const signConsole = document.getElementById('sign-console');
+        const signSpinner = document.getElementById('sign-spinner');
+        const signText = document.querySelector('.sign-text');
+        const nextButton = document.getElementById('legal-next');
+        
+        // Disable button and show spinner
+        this.disabled = true;
+        signText.style.opacity = '0.5';
+        signSpinner.style.display = 'inline-block';
+        
+        try {
+          // Create the message to sign
+          const message = `23andMe Data Rights Rescission\n
+          I hereby rescind all rights previously granted to 23andMe for my genetic data and assert full ownership through GenoBank.io's BioNFT™ technology.\n
+          Wallet: ${userWalletAddress}\n
+          Date: ${today.toISOString()}\n`;
+          
+          // Sign the message with MetaMask
+          const signature = await window.ethereum.request({
+            method: 'personal_sign',
+            params: [ethers.utils.hexlify(ethers.utils.toUtf8Bytes(message)), userWalletAddress]
+          });
+          
+          signedMessage = {
+            message: message,
+            signature: signature,
+            address: userWalletAddress
+          };
+          
+          signConsole.innerHTML = `
+            <div class="alert alert-success">
+              <i class="fa-solid fa-check-circle me-2"></i>
+              Legal notice successfully signed with your wallet!
+            </div>`;
+          nextButton.disabled = false;
+          
+        } catch (error) {
+          console.error('Error signing message:', error);
+          signConsole.innerHTML = `
+            <div class="alert alert-danger">
+              <i class="fa-solid fa-exclamation-triangle me-2"></i>
+              Error signing message: ${error.message}
+            </div>`;
+        } finally {
+          // Re-enable button and hide spinner
+          this.disabled = false;
+          signText.style.opacity = '1';
+          signSpinner.style.display = 'none';
+        }
+      });
+      
+      // Legal next button
+      document.getElementById('legal-next').addEventListener('click', function() {
+        stepper.next();
+        updateProgressBar(50);
+      });
+      
+      // File drop zone handling
+      const fileDropZone = document.getElementById('file-drop-zone');
+      const fileInput = document.getElementById('data-file');
+      
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        fileDropZone.addEventListener(eventName, preventDefaults, false);
+      });
+      
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      
+      ['dragenter', 'dragover'].forEach(eventName => {
+        fileDropZone.addEventListener(eventName, highlight, false);
+      });
+      
+      ['dragleave', 'drop'].forEach(eventName => {
+        fileDropZone.addEventListener(eventName, unhighlight, false);
+      });
+      
+      function highlight() {
+        fileDropZone.classList.add('bg-light');
+        fileDropZone.style.borderColor = '#0d6efd';
+      }
+      
+      function unhighlight() {
+        fileDropZone.classList.remove('bg-light');
+        fileDropZone.style.borderColor = '#ccc';
+      }
+      
+      fileDropZone.addEventListener('drop', handleDrop, false);
+      
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length) {
+          fileInput.files = files;
+          handleFileSelect(files[0]);
+        }
+      }
+      
+      // File input change handler
+      fileInput.addEventListener('change', function() {
+        if (this.files.length) {
+          handleFileSelect(this.files[0]);
+        }
+      });
+      
+      function handleFileSelect(file) {
+        selectedFile = file;
+        
+        // Update UI with file info
+        const fileInfo = document.getElementById('file-info');
+        fileInfo.innerHTML = `
+          <div class="alert alert-primary">
+            <i class="fa-solid fa-file-lines me-2"></i>
+            <strong>Selected file:</strong> ${file.name} (${formatFileSize(file.size)})
+          </div>`;
+        fileInfo.style.display = 'block';
+        
+        // Enable process button
+        document.getElementById('process-file').disabled = false;
+      }
+      
+      function formatFileSize(bytes) {
+        if (bytes < 1024) return bytes + ' bytes';
+        else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+        else return (bytes / 1048576).toFixed(1) + ' MB';
+      }
+      
+      // Process file button
+      document.getElementById('process-file').addEventListener('click', async function() {
+        if (!userWalletAddress) {
+          alert('Please connect your wallet first');
+          return;
+        }
+        
+        if (!selectedFile) {
+          alert('Please select a file first');
+          return;
+        }
+        
+        const processButton = this;
+        const processText = document.querySelector('.process-text');
+        const processSpinner = document.getElementById('process-spinner');
+        const progressContainer = document.getElementById('process-progress-container');
+        const progressBar = document.getElementById('process-progress');
+        const statusText = document.getElementById('process-status');
+        
+        // Disable button and show spinner
+        processButton.disabled = true;
+        processText.style.opacity = '0.5';
+        processSpinner.style.display = 'inline-block';
+        progressContainer.style.display = 'block';
+        
+        try {
+          // Update status
+          statusText.textContent = 'Starting file processing...';
+          
+          // Generate file hash
+          await updateProgress(progressBar, 0, 20, 'Generating file hash...');
+          fileHash = await generateFileHash(selectedFile);
+          document.getElementById('file-hash').textContent = fileHash;
+          
+          // Extract 96 SNPs and generate bloom filter hash
+          await updateProgress(progressBar, 20, 60, 'Extracting 96 SNPs and generating DNA fingerprint...');
+          const snps96Data = await extract96SNPs(selectedFile);
+          bloomFilterHash = generateBloomFilterHash(snps96Data);
+          document.getElementById('bloom-hash').textContent = bloomFilterHash;
+          
+          // Simulate Story Protocol registration
+          await updateProgress(progressBar, 60, 90, 'Registering claim on Story Protocol...');
+          storyProtocolId = await generateStoryProtocolId(userWalletAddress, fileHash, bloomFilterHash);
+          document.getElementById('story-protocol-id').textContent = storyProtocolId;
+          
+          // Handle optional upload
+          if (document.getElementById('optional-upload').checked) {
+            await updateProgress(progressBar, 90, 100, 'Uploading encrypted file (optional)...');
+            // This is where the actual upload would happen if implemented
+          } else {
+            await updateProgress(progressBar, 90, 100, 'Finalizing claim...');
+          }
+          
+          // Set registration date
+          document.getElementById('registration-date').textContent = today.toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+          });
+          
+          // Move to verification step
+          setTimeout(() => {
+            stepper.next();
+            updateProgressBar(75);
+            
+            // Show verification complete after a delay
+            setTimeout(() => {
+              document.getElementById('verification-complete').style.display = 'block';
+              updateProgressBar(100);
+            }, 1500);
+          }, 1000);
+          
+        } catch (error) {
+          console.error('Error processing file:', error);
+          statusText.textContent = `Error: ${error.message}`;
+          progressBar.classList.remove('bg-success');
+          progressBar.classList.add('bg-danger');
+        } finally {
+          // Re-enable button and hide spinner
+          processButton.disabled = false;
+          processText.style.opacity = '1';
+          processSpinner.style.display = 'none';
+        }
+      });
+      
+      // Download certificate button
+      document.getElementById('download-certificate').addEventListener('click', function(e) {
+        e.preventDefault();
+        generateCertificate();
+      });
+      
+      // Download legal notice button
+      document.getElementById('download-legal-notice').addEventListener('click', function(e) {
+        e.preventDefault();
+        generateLegalNotice();
+      });
+      
+      // Helper function to update progress bar
+      function updateProgressBar(value) {
+        document.getElementById('progress').value = value;
+      }
+      
+      // Helper function to update processing progress with animation
+      async function updateProgress(progressElement, startValue, endValue, statusText) {
+        document.getElementById('process-status').textContent = statusText;
+        
+        return new Promise((resolve) => {
+          let currentValue = startValue;
+          const step = 0.5;
+          const interval = setInterval(() => {
+            currentValue += step;
+            progressElement.style.width = `${currentValue}%`;
+            progressElement.textContent = `${Math.round(currentValue)}%`;
+            progressElement.setAttribute('aria-valuenow', currentValue);
+            
+            if (currentValue >= endValue) {
+              clearInterval(interval);
+              resolve();
+            }
+          }, 20);
+        });
+      }
+      
+      // Generate file hash
+      async function generateFileHash(file) {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const fileContent = event.target.result;
+            const hash = CryptoJS.SHA256(fileContent).toString(CryptoJS.enc.Hex);
+            resolve(hash);
+          };
+          reader.readAsText(file);
+        });
+      }
+      
+      // Extract 96 SNPs from 23andMe file
+      async function extract96SNPs(file) {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const fileContent = event.target.result;
+            // Parse the 23andMe file format (typically tab-separated values)
+            const lines = fileContent.split('\n');
+            
+            // Filter out comment lines and headers
+            const dataLines = lines.filter(line => !line.startsWith('#') && line.trim() !== '');
+            
+            // Key SNPs for identification (this would be a specific set in production)
+            // In a real implementation, these would be the 96 specific SNPs selected for the fingerprint
+            const targetSNPs = [];
+            
+            // This is a simplified implementation - in production you would look for specific SNPs
+            // For demonstration, we'll select 96 SNPs from the file
+            const allSNPs = dataLines.map(line => {
+              const parts = line.split('\t');
+              // Typical 23andMe format: rsid, chromosome, position, genotype
+              return {
+                rsid: parts[0],
+                chromosome: parts[1],
+                position: parts[2],
+                genotype: parts[3]
+              };
+            });
+            
+            // Select 96 SNPs (or fewer if file has less than 96)
+            // In production, you would select specific, predefined SNPs
+            const maxSNPs = 96;
+            const sampleSize = Math.min(allSNPs.length, maxSNPs);
+            
+            // Either select specific SNPs or sample from the file for demo purposes
+            if (allSNPs.length > maxSNPs) {
+              // Deterministic sampling for consistency - use evenly spaced indices
+              const step = Math.floor(allSNPs.length / maxSNPs);
+              for (let i = 0; i < maxSNPs; i++) {
+                targetSNPs.push(allSNPs[i * step]);
+              }
+            } else {
+              // Use all available SNPs if fewer than 96
+              targetSNPs.push(...allSNPs);
+            }
+            
+            resolve(targetSNPs);
+          };
+          reader.readAsText(file);
+        });
+      }
+      
+      // Generate bloom filter hash from 96 SNPs
+      function generateBloomFilterHash(snpsData) {
+        // In a real implementation, this would use a proper bloom filter algorithm
+        // For this demo, we'll create a concatenated string of the SNP data and hash it
+        const snpStrings = snpsData.map(snp => 
+          `${snp.rsid}:${snp.chromosome}:${snp.position}:${snp.genotype}`
+        );
+        
+        // Join the SNP strings and hash the result
+        const concatenated = snpStrings.join('|');
+        return CryptoJS.SHA256(concatenated).toString(CryptoJS.enc.Hex);
+      }
+      
+      // Generate Story Protocol ID
+      async function generateStoryProtocolId(walletAddress, fileHash, bloomHash) {
+        // This would actually interact with Story Protocol in production
+        // For this demo, we'll create a simulated ID
+        const combined = `${walletAddress}:${fileHash}:${bloomHash}:${Date.now()}`;
+        const hash = CryptoJS.SHA256(combined).toString(CryptoJS.enc.Hex);
+        
+        // Simulate an API call delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Return a formatted ID that looks like a Story Protocol ID
+        return `SP-${hash.substring(0, 16)}-${hash.substring(16, 24)}`;
+      }
+      
+      // Generate ownership certificate
+      function generateCertificate() {
+        // This would generate a proper PDF certificate in production
+        // For now, we'll just show an alert
+        alert('Certificate generation would create a PDF with ownership details including the wallet address, file hash, SNP fingerprint, and Story Protocol registration.');
+      }
+      
+      // Generate legal notice PDF
+      function generateLegalNotice() {
+        // This would generate a PDF of the signed legal notice in production
+        // For now, we'll just show an alert
+        alert('Legal notice generation would create a PDF with the signed rescission notice and verification details.');
+      }
+    });
+  </script>
+</body>
+</html>

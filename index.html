@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="icon" type="image/png" sizes="32x32" href="../icon-72x72.png">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        <link href="/components/main-dashboard-component/main-dashboard-component.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script src="https://js.stripe.com/v3"></script>
+        <link rel="stylesheet" href="/user_dashboard/css/style.css">
+        <script type="text/javascript" src="/js/env.js"></script>
+        <script type="text/javascript" src="/js/utils.js"></script>
+        <script src="MainDashboard.js"></script>
+        <title> GenoBank.io RawData Registration - BioIP</title>
+    </head>
+    <body>
+        <div id="navbar-container"> </div>
+        <div id="top-banner">
+        </div>
+        <div class="container-fluid mt-5 mb-5">
+            <div class="container">
+                <div id="main-dashboard-container">
+
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div id="modalSectionContainer">
+        </div>
+        <footer id="footer-container" class="footer-container bg-footer" role="contentinfo">
+        </footer>
+        <section>
+            <script type="text/javascript" src="/components/navbar/navbar.js"></script>
+            <script type="text/javascript" src="services/registration_service.js"></script>
+            <script type="text/javascript" src="/components/main-dashboard-component/fileInfoComponent.js"></script>
+            <script type="text/javascript" src="stripeFunctions.js"></script>
+            <script type="text/javascript" src="/components/running-components/startRunningComponent.js"></script>
+            <script type="text/javascript" src="/components/running-components/stopRunningComponent.js"></script>
+            <script type="text/javascript" src="/components/running-components/resultComponent.js"></script>
+            <script type="text/javascript" src="/components/main-dashboard-component/main-dashboard-component.js"></script>
+            <script type="text/javascript" src="/components/main-dashboard-component/stripeModalComponent.js"></script>
+            <script src="/login/genobank_auth/walletConnectConnection.js" type="module"></script>
+        </section>
+    </body>
+</html>
+

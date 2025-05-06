@@ -1,0 +1,85 @@
+/* mediaqueries.css - Estilos responsivos mejorados */
+
+/* Estilos para las tarjetas */
+.starting-card {
+    max-width: 500px;
+    border-radius: var(--card-border-radius);
+    border-top-left-radius: calc(var(--card-border-radius) + 5px);
+  }
+  .complement-card-left {
+    max-width: 385px;
+    margin: auto 1px auto auto;
+    border-radius: var(--card-border-radius);
+    min-height: 131.2px;
+  }
+  .complement-card-right {
+    max-width: 800px;
+    margin: auto auto auto 1px;
+    border-radius: var(--card-border-radius);
+    border-bottom-right-radius: calc(var(--card-border-radius) + 5px);
+  }
+  
+  /* Mobile Adjustments */
+  @media (max-width: 767px) {
+    .img-login {
+      height: 100px;
+      width: auto !important;
+    }
+    
+    #login-container {
+      min-width: unset;
+      width: 100%;
+      padding: 0 15px;
+    }
+    
+    .col-6 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    
+    .complement-card-left,
+    .complement-card-right {
+      max-width: 100%;
+      margin: 0 0 15px 0;
+    }
+    
+    .row {
+      display: block;
+    }
+    
+    .starting-card {
+      margin: 0 0 15px 0;
+    }
+    
+    .dna-bg {
+      display: none;
+    }
+  }
+  
+  /* Tablet and larger */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .img-login {
+      height: 150px;
+    }
+    
+    .complement-card-left,
+    .complement-card-right {
+      padding: 1rem;
+    }
+    
+    .card-title {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Larger screens */
+  @media (min-width: 992px) {
+    .img-login {
+      height: 200px;
+    }
+    
+    .starting-card {
+      margin: 0 auto;
+    }
+  }
+  

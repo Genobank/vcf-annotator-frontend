@@ -1,0 +1,29 @@
+/* theme.css - Inspirado en 23andMe */
+:root {
+  /* Colores principales 23andMe */
+  --background-color: #f5f5f7;
+  --primary-color: #253b6e;
+  --primary-color-aux: #991893;
+  --primary-hover-color: #1b2c54;
+  --primary-active-color: #11203f;
+ 
+  /* Colores secundarios */
+  --secondary-color: #73c9c9;
+  --secondary-light: #dbf0f0;
+ 
+  /* Colores de texto */
+  --text-color: #ffffff;
+  --text-dark: #333333;
+  --text-secondary: #555555;
+ 
+  /* Medidas */
+  --logo-width: 300px;
+  --btn-border-radius: 30px;
+  --card-border-radius: 12px;
+ 
+  /* Efectos */
+  --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  --btn-disabled-bg-color: #cccccc;
+  --btn-disabled-color: #666666;
+  --gray: rgb(230, 230, 230);
+}

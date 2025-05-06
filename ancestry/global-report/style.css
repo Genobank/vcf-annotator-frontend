@@ -1,0 +1,93 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    
+}
+
+.general-container {
+    flex: 1;
+    padding-bottom: 50px; /* Espacio suficiente para el footer */
+}
+
+.footer-container {
+    background-color: #212333;
+    background-image: url('/images/footer.jpeg');
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+
+
+/* .Banner {
+    height: 100%;
+    position: relative;
+    background-image:  url('/images/services/somos/global/Fondo_1.png'); 
+    overflow: hidden;
+    background-repeat: no-repeat;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover; 
+}
+
+
+
+.Banner::before {
+    background-image: url('/images/services/somos/global/Global1.png'), url('/images/services/somos/global/Global2.png');
+    width: 100%;
+    height: 100%;  
+    content: ' ';
+    display: block;
+    position: absolute;
+    background-repeat: no-repeat;
+    -ms-background-size: 30%, 15%;
+    -o-background-size: 30%, 15%;
+    -moz-background-size: 30%, 15%;
+    -webkit-background-size: 30%, 15%;
+    background-size: 30%, 15%;
+    background-position: center bottom, left bottom;
+    opacity: 0.5;
+    z-index: 1;
+} */
+
+
+@media (max-width: 992px) {
+    .row.p-5 {
+        display: flex;
+        flex-direction: column; /* Disposición en columna */
+        position: relative;
+        padding: 0 !important; /* Elimina el padding */
+        margin: 0; /* Elimina cualquier margen */
+        width: 100%; /* Asegura que ocupe todo el ancho */
+    }
+
+    .chart-in-map-container {
+        position: relative; /* Mantener relative */
+        order: 2; /* Aparece después del map-container */
+        width: 100%; /* Asegura que ocupe todo el ancho */
+        padding: 0; /* Elimina cualquier padding */
+        margin: 0; /* Elimina cualquier margen */
+    }
+
+    .chart-section-header {
+        display: none; /* Ocultar el header */
+    }
+
+    .map-container {
+        height: 300px; /* Mantener altura específica */
+        position: relative;
+        order: 1; /* Aparece primero */
+        width: 100%; /* Asegura que ocupe todo el ancho */
+        padding: 0; /* Elimina cualquier padding */
+        margin: 0; /* Elimina cualquier margen */
+    }
+}
+
+
+

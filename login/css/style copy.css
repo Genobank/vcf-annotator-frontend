@@ -1,0 +1,182 @@
+/* style.css */
+@import '/theme/theme.css';
+
+/* General Styles */
+body {
+  background-color: var(--background-color);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-dark);
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Logo Styles */
+.img-logo {
+  width: var(--logo-width);
+  display: block;
+  margin: 2.5rem auto 1rem auto;
+  transition: transform 0.3s ease;
+}
+
+.shading-top {
+  border-top: 4px solid var(--primary-color);
+}
+
+/* Card Styles */
+.card {
+  border: none;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  background-color: white;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.8rem;
+  font-size: 1.25rem;
+}
+
+.card-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* make more visible the borders of the check and make it bigger*/
+.form-check-input {
+  border: 2px solid var(--primary-color);
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Button Styles */
+.somos-btn {
+  background-image: linear-gradient(90deg, #d60e66, #a10e7d);
+  color: var(--text-color);
+  border: none;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: var(--btn-border-radius);
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(214, 14, 102, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.somos-btn:hover {
+  background-image: linear-gradient(90deg, #e01a75, #b11e8a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(214, 14, 102, 0.4);
+}
+
+.somos-btn:active {
+  background-image: linear-gradient(90deg, #c00d5c, #900b6e);
+  transform: translateY(0);
+}
+
+.login-btn {
+  width: 100%;
+  max-width: 300px;
+  margin: 0.5rem auto 0;
+}
+
+.genobank-btn-logo {
+  height: 24px;
+  margin-right: 8px;
+}
+
+/* Layout Specific */
+.mt-custom {
+  /* margin-top: calc(1vh + 2vw); */
+  margin-top: calc(0.1vh + 2vw);
+}
+
+/* First Card (Login) */
+.first-card {
+  padding: 1.5rem;
+  background: linear-gradient(to right, #f8f9fa, white);
+  border-top: 4px solid var(--primary-color-aux);
+  margin-bottom: 1.5rem;
+}
+
+
+/* Option Cards */
+.complement-card-left {
+  border-top: 4px solid var(--secondary-color);
+  background: linear-gradient(to bottom right, white, var(--secondary-light));
+  padding: 1.5rem;
+}
+
+.complement-card-right {
+  border-top: 4px solid var(--secondary-color);
+  background: linear-gradient(to bottom left, white, var(--secondary-light));
+  padding: 1.5rem;
+}
+
+/* Image Styles */
+.img-login {
+  max-width: 80%;
+  transition: transform 0.3s ease;
+}
+
+.img-login:hover {
+  transform: scale(1.05);
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  margin: 1.5rem 0;
+  font-weight: 500;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 0 1rem;
+}
+
+/* Login Container */
+#login-container {
+  min-width: 516px;
+}
+
+/* DNA Background Elements */
+.dna-bg {
+  position: absolute;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+.dna-1 {
+  top: 5%;
+  left: 2%;
+  width: 180px;
+  transform: rotate(30deg);
+}
+
+.dna-2 {
+  bottom: 5%;
+  right: 2%;
+  width: 160px;
+  transform: rotate(-25deg);
+}
