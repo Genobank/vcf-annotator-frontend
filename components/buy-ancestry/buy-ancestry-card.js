@@ -4,60 +4,48 @@ function buy_ancestry_card() {
             <div class="card-body ancestry-border " >
                 <div class="card" >
                     <div class="card-body">
-                        <h5 class="h3 fs-3 ">Unlock your ancestry with SOMOS</h5>
-                        <hr>
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="display-5 fs-6">You haven't purchased  our ancestry service yet. Don't miss out! Click the button below to use your credit/debit card.</p>
-                                <div class="text-center mb-5">
-                                    <button class="btn btn-outline-primary somos-btn col-6 mx-auto" onclick="getPaymentModal()">Unlock SOMOS Ancestry $46.00 USD </button>
-                                    <p class="h1 fs-6 text-center">(One-time payment via Stripe)</p>
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h4>Discover Your Genetic Heritage with SOMOS</h4>
+                                <p>Using the same genetic data you've already uploaded, our ancestry analysis reveals your unique genetic heritage map, showing connections to populations around the world.</p>
+                                <p><strong>With SOMOS Ancestry you'll receive:</strong></p>
+                                <ul>
+                                    <li>Detailed breakdown of your genetic heritage across global regions</li>
+                                    <li>Interactive visualization of your ancestry composition</li>
+                                    <li>Insights into migration patterns that shaped your genetic story</li>
+                                    <li>Additional historical and cultural context for your results</li>
+                                </ul>
+                                <p>Results are available immediately after processing and stored securely in your account.</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <img src="/images/ancestry-info-fondo.png" alt="Ancestry Analysis" class="img-fluid mb-3" style="max-width: 200px;">
+                                <div class="pricing-box p-3 bg-light rounded">
+                                    <span class="d-block price-text">$46.00 USD</span>
+                                    <span class="d-block small">(One-time payment)</span>
+                                    <button class="btn btn-primary mt-2 w-100" onclick="getPaymentModal()">Unlock Ancestry Analysis</button>
                                 </div>
-
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <strong>But</strong>
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center display-6 fs-6">
-
-                                    if you have a valid hash code, you can validate it here:
-                                </div>
-
-
-                                
-                                <div class="mt-2">
-                                    <div class="card p-3">
-                                        <div class="d-flex justify-content-center align-items-center gap-3">
-                                            <div class="form-group mb-0">
-                                                <input 
-                                                    type="text" 
-                                                    class="form-control" 
-                                                    id="id-input-hash-code" 
-                                                    placeholder="Enter your hash code"
-                                                    onkeyup="validateInput()"
-                                                >
-                                                <div id="hash-message-warning" class="text-danger mt-2" style="display: none;"></div>
-                                            </div>
-                                            <button 
-                                                id="id-validate-hashcode-button" 
-                                                class="btn btn-primary" 
-                                                onclick="validateHashCodeHandler()" 
-                                                disabled
-                                                style="max-width: 200px;"
-                                            >
-                                                Validate Hash Code
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                
-
                             </div>
                         </div>
-                        <div class="pe-5 ps-5 mt-4 mb-5">
-                            <div class="text-center mb-3">Preview</div>
-                            <img class="w-100" src="/images/ancestry_animation.gif">
+
+                        <div class="card border-0 mt-5">
+                            <div class="card-body border rounded">
+                                <h5>Have a promotional code?</h5>
+                                <p>If you received a promotional code for ancestry analysis, enter it here:</p>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Enter your promotional code" id="id-input-hash-code" onkeyup="validateInput()">
+                                    <button class="btn btn-outline-primary" type="button" id="id-validate-hashcode-button" onclick="validateHashCodeHandler()" disabled>
+                                        Apply Code
+                                    </button>
+                                </div>
+                                <div id="hash-message-warning" class="text-danger mt-2" style="display: none;"></div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 mb-3">
+                            <h5 class="text-center">Sample Analysis Preview</h5>
+                            <div class="text-center">
+                                <img class="img-fluid rounded" src="/images/ancestry_animation.gif" alt="Ancestry Analysis Preview">
+                            </div>
                         </div>
                     </div>
                 </div>

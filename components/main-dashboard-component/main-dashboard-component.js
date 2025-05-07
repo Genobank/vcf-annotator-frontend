@@ -44,6 +44,32 @@ document.addEventListener('DOMContentLoaded', () => {
 function mainDashboardComponent(register) {
     return /*html */`
         ${fileInfoComponent(register)}
+        
+        <div class="container mt-4">
+          <div class="card bg-light border-0">
+            <div class="card-body">
+              <h2 class="mb-3">Your DNA. Your Control.</h2>
+              <p>Welcome to GenoBank.io's secure genetic analysis platform. We combine advanced genomic analysis with blockchain technology to give you privacy-focused insights while maintaining complete ownership of your genetic data.</p>
+              <p>Your uploaded genetic data is protected using secure blockchain verification, allowing you to access personalized analysis packages without compromising your privacy.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="container mt-4">
+          <div class="card bg-light mb-4">
+            <div class="card-body">
+              <h5>Your Data Ownership on the Blockchain</h5>
+              <p>We use blockchain technology to provide you with:</p>
+              <ul>
+                <li><strong>Proof of Ownership</strong> - Your genetic data is represented by a secure digital certificate (NFT) on the blockchain</li>
+                <li><strong>Privacy Protection</strong> - Only a fingerprint of your data is stored on the blockchain, not your actual genetic information</li>
+                <li><strong>Control</strong> - Your digital wallet gives you exclusive access to your data and analysis results</li>
+              </ul>
+              <p class="small mb-0 text-muted">Technical details are available in the sidebar under "BioDataset Token"</p>
+            </div>
+          </div>
+        </div>
+        
         <div class="container mt-5" id="analysisViewContainer">
         </div>
 
@@ -58,16 +84,16 @@ function mainDashboardComponent(register) {
                     <div class="service-header package-1">
                         <div class="text-center">
                             <i class="fas fa-dna service-icon mb-2"></i>
-                            <h5>Rare Coding Package</h5>
+                            <h5>Rare Variant Analysis</h5>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="service-price mb-3">$4.99 / use</div>
-                        <p class="card-text">Identify rare genetic variants associated with diseases and conditions.</p>
+                        <div class="service-price mb-3">$4.99 / analysis</div>
+                        <p class="card-text">Discover uncommon genetic variations that might affect your health. Understand what makes your genetics unique.</p>
                         <ul class="list-unstyled mb-4">
-                            <li><i class="fas fa-check text-success me-2"></i> Rare variant identification</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Clinical significance assessment</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Detailed reporting</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Identification of rare genetic variants</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Plain-language health significance explanations</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Comprehensive downloadable report</li>
                         </ul>
                         <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Rare Coding Package" onclick="openPaymentModal('rare_coding')">
                             Select
@@ -81,16 +107,16 @@ function mainDashboardComponent(register) {
                     <div class="service-header package-2">
                         <div class="text-center">
                             <i class="fas fa-heartbeat service-icon mb-2"></i>
-                            <h5>Hereditary Cancer</h5>
+                            <h5>Cancer Risk Insights</h5>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="service-price mb-3">$4.99 / use</div>
-                        <p class="card-text">Analyze genetic predispositions to various hereditary cancers.</p>
+                        <div class="service-price mb-3">$4.99 / analysis</div>
+                        <p class="card-text">Understand your genetic factors related to various cancer types. Knowledge is the first step in proactive health management.</p>
                         <ul class="list-unstyled mb-4">
-                            <li><i class="fas fa-check text-success me-2"></i> Cancer gene analysis</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Risk assessment</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Counseling recommendations</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Analysis of key cancer-related genes</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Personalized risk context (not a diagnosis)</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Guidance on next steps and discussions with healthcare providers</li>
                         </ul>
                         <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Hereditary Cancer" onclick="openPaymentModal('hereditary_cancer')">
                             Select
@@ -104,16 +130,16 @@ function mainDashboardComponent(register) {
                     <div class="service-header package-3">
                         <div class="text-center">
                             <i class="fas fa-bezier-curve service-icon mb-2"></i>
-                            <h5>Splicing Package</h5>
+                            <h5>Gene Expression Analysis</h5>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="service-price mb-3">$4.99 / use</div>
-                        <p class="card-text">Detailed analysis of RNA splicing variants and their potential impact.</p>
+                        <div class="service-price mb-3">$4.99 / analysis</div>
+                        <p class="card-text">Understand how your genes are expressed and functioning. Explore the mechanisms that make you unique.</p>
                         <ul class="list-unstyled mb-4">
-                            <li><i class="fas fa-check text-success me-2"></i> Splicing site analysis</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Functional prediction</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Transcript mapping</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Analysis of how your genes are processed</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Insights into potential functional impacts</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Advanced genetic expression mapping</li>
                         </ul>
                         <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Splicing Package" onclick="openPaymentModal('splicing')">
                             Select
@@ -129,16 +155,16 @@ function mainDashboardComponent(register) {
                     <div class="service-header package-4">
                         <div class="text-center">
                             <i class="fas fa-capsules service-icon mb-2"></i>
-                            <h5>Drug Interaction Package</h5>
+                            <h5>Medication Response Profile</h5>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="service-price mb-3">$4.99 / use</div>
-                        <p class="card-text">Analyze genetic factors affecting drug metabolism and potential interactions.</p>
+                        <div class="service-price mb-3">$4.99 / analysis</div>
+                        <p class="card-text">Discover how your genetics may influence reactions to certain medications. Share insights with your healthcare provider.</p>
                         <ul class="list-unstyled mb-4">
-                            <li><i class="fas fa-check text-success me-2"></i> Pharmacogenomic analysis</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Medication response prediction</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Adverse reaction risk assessment</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Analysis of medication processing genes</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Potential medication response insights</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Identification of possible reaction sensitivities</li>
                         </ul>
                         <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Drug Interaction Package" onclick="openPaymentModal('drug_interaction')">
                             Select
@@ -152,16 +178,16 @@ function mainDashboardComponent(register) {
                     <div class="service-header package-5">
                         <div class="text-center">
                             <i class="fas fa-biohazard service-icon mb-2"></i>
-                            <h5>Pathogenic Variant Package</h5>
+                            <h5>Health Variant Screening</h5>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="service-price mb-3">$4.99 / use</div>
-                        <p class="card-text">Comprehensive identification and classification of pathogenic genetic variants.</p>
+                        <div class="service-price mb-3">$4.99 / analysis</div>
+                        <p class="card-text">Screen for genetic variations associated with health conditions using medical-grade classifications.</p>
                         <ul class="list-unstyled mb-4">
-                            <li><i class="fas fa-check text-success me-2"></i> ACMG classification</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Disease association analysis</li>
-                            <li><i class="fas fa-check text-success me-2"></i> Penetrance estimation</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Standard medical classification of variants</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Analysis of potential health associations</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Estimate of likelihood for expression</li>
                         </ul>
                         <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Pathogenic Variant Package" onclick="openPaymentModal('pathogenic_variant')">
                             Select

@@ -99,21 +99,21 @@ function fileInfoComponent(nftData) {
           <div class="col-md-4 mt-4 mt-md-0">
             <div class="card bg-light">
               <div class="card-body p-4">
-                <!-- NFT Thumbnail Image -->
+                <!-- Digital Certificate Image -->
                 <div class="text-center mb-4">
                   <div style="background-color: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
-                    <img src="/images/VCFNFTThumnail.png" alt="NFT Thumbnail" class="img-fluid" />
+                    <img src="/images/VCFNFTThumnail.png" alt="Digital Certificate" class="img-fluid" />
                   </div>
-                  <h5 class="service-price">Token ID: ${token_id}</h5>
+                  <h5 class="service-price">Your Digital Certificate ID: ${token_id}</h5>
                 </div>
                 <div class="mt-4">
-                  <div class="small text-muted mb-2">IP Asset ID:</div>
+                  <div class="small text-muted mb-2">Blockchain Reference:</div>
                   <div class="d-flex align-items-center justify-content-center mb-4">
                     <span class="text-truncate" style="max-width: 150px;">${ip_id}</span>
                     <button class="btn btn-sm btn-link ms-2" title="Copy"><i class="fas fa-copy"></i></button>
                   </div>
                   <a href="${ip_asset_url}" target="_blank" class="btn btn-outline-primary w-100">
-                    <i class="fas fa-external-link-alt me-2"></i>View in Explorer
+                    <i class="fas fa-external-link-alt me-2"></i>View Certificate Details
                   </a>
                 </div>
               </div>
