@@ -39,13 +39,14 @@ function step2Component() {
                             </div>
                             <div id="fileInstructions" class="mt-3 text-secondary">
                                 <div class="alert alert-info" role="alert">
-                                    <h5 class="h6 fs-5">How we'll handle your data</h5>
-                                    <p>Your privacy and data ownership are our top priorities. Here's what happens when you upload your file:</p>
+                                    <h5 class="h6 fs-5">VCF Annotation and Tokenization</h5>
+                                    <p>Your privacy and data ownership are our top priorities. Here's what happens when you upload your VCF file:</p>
                                     <ol>
-                                        <li>We create a unique digital fingerprint of your data (we don't store your full genetic information)</li>
-                                        <li>This fingerprint is secured on the blockchain as your proof of ownership</li>
-                                        <li>Your file is stored securely and only accessible by you</li>
-                                        <li>You maintain complete control over your data with your digital wallet</li>
+                                        <li>Your genetic variants are analyzed using OpenCravat, a powerful annotation tool</li>
+                                        <li>Results are securely stored and tokenized as BioNFTs on the Story Protocol blockchain</li>
+                                        <li>A unique digital fingerprint secures your ownership claim (we don't expose your full genetic information)</li>
+                                        <li>You maintain complete control with your digital wallet</li>
+                                        <li>Access your annotated datasets and visualization tools through your dashboard</li>
                                     </ol>
                                     <p class="mt-2"><strong>Accepted formats:</strong> VCF files (.vcf) or 23andMe text files (.txt)</p>
                                 </div>

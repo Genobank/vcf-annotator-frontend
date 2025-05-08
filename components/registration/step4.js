@@ -20,8 +20,8 @@ function step4Component(){
                                 </div>
                                 <div class="text-center mb-2">
                                     <div class="display-5 fs-3">
-                                        BioIP property claimed! <br>
-                                        on Story
+                                        VCF Analysis Complete! <br>
+                                        BioNFT Created on Story Protocol
                                     </div>
                                     <span>
                                     <div id="id-tx-hash-component">
