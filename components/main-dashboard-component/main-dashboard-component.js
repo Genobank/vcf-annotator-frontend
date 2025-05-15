@@ -10,10 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const isCompleted = job?.status === 'Completed';
             const package = job?.package;
             const wasActive = localStorage.getItem('analysisViewActive') === 'true';
-            console.log("Job status:", job);
-            console.log("Is running:", isRunning);
-            console.log("Was active:", wasActive);
-
             if (isRunning || wasActive) {
                 localStorage.setItem('analysisViewActive', 'true');
                 startAnalysisViewProcess();
@@ -25,14 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 $("#analysisViewContainer").html(
                     startFinishViewComponent(filename, job.status, job?.logs.reverse().join('<br>'), package, "success", false)
                 );
-
                 const resultFiles = await getResultsFolder(getUserToken(), package);
-                console.log("Result files:", resultFiles);
                 $("#resultsFolderContainer").html(resultsComponent(resultFiles))
-
-        
             }
-
 
         } catch (err) {
             console.error("Error al inicializar el polling de análisis:", err);
@@ -69,13 +60,15 @@ function mainDashboardComponent(register) {
                             <li><i class="fas fa-check text-success me-2"></i> Clinical significance assessment</li>
                             <li><i class="fas fa-check text-success me-2"></i> Detailed reporting</li>
                         </ul>
-                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Rare Coding Package" onclick="openPaymentModal('rare_coding')">
+                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Rare Coding Package" onclick="openFirtPaymenMethodModal('rare_coding')">
                             Select
                         </button>
                     </div>
                 </div>
             </div>
             <!-- Package 2: Hereditary Cancer -->
+
+            <!-- coming soon card this card onoy shows coming soon text and is a disable non functional card -->
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card service-card h-100">
                     <div class="service-header package-2">
@@ -92,13 +85,41 @@ function mainDashboardComponent(register) {
                             <li><i class="fas fa-check text-success me-2"></i> Risk assessment</li>
                             <li><i class="fas fa-check text-success me-2"></i> Counseling recommendations</li>
                         </ul>
-                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Hereditary Cancer" onclick="openPaymentModal('hereditary_cancer')">
+                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-service="Hereditary Cancer" onclick="openFirtPaymenMethodModal('hereditary_cancer')">
                             Select
                         </button>
                     </div>
                 </div>
             </div>
-            <!-- Package 3: Splicing Package -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card service-card h-100 no-animation">
+                    <div class="service-header package-coming-soon">
+                        <div class="text-center">
+                            <i class="fas fa-box-open service-icon mb-2"></i>
+                            <h5>Splicing Package</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="blured-container">
+                            <div class="service-price mb-3">$—/use</div>
+                            <p class="card-text text-muted">Detailed analysis of RNA splicing variants and their potential impact.</p>
+                            <ul class="list-unstyled mb-4 opacity-50">
+                                <li><i class="fas fa-circle me-2"></i>Caracteristica 1</li>
+                                <li><i class="fas fa-circle me-2"></i> Caracteristica 2 </li>
+                                <li><i class="fas fa-circle me-2"></i> Feature 3</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-secondary w-100" disabled>
+                            Coming Soon
+                        </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            <!-- Package 3: Splicing Package 
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card service-card h-100">
                     <div class="service-header package-3">
@@ -121,9 +142,63 @@ function mainDashboardComponent(register) {
                     </div>
                 </div>
             </div>
+            ---->
         </div>
         <!-- Segunda fila: 2 paquetes + espacio vacío -->
         <div class="row">
+
+
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card service-card h-100 no-animation">
+                    <div class="service-header package-coming-soon">
+                        <div class="text-center">
+                            <i class="fas fa-box-open service-icon mb-2"></i>
+                            <h5>Drug Interaction Package</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="blured-container">
+                            <div class="service-price mb-3">—</div>
+                            <p class="card-text text-muted">Estamos trabajando en algo increíble. ¡Muy pronto disponible!</p>
+                            <ul class="list-unstyled mb-4 opacity-50">
+                                <li><i class="fas fa-circle me-2"></i> Característica 1</li>
+                                <li><i class="fas fa-circle me-2"></i> Característica 2</li>
+                                <li><i class="fas fa-circle me-2"></i> Característica 3</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-secondary w-100" disabled>
+                            Coming Soon
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card service-card h-100 no-animation">
+                    <div class="service-header package-coming-soon">
+                        <div class="text-center">
+                            <i class="fas fa-box-open service-icon mb-2"></i>
+                            <h5>Pathogenic Variant Package</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="blured-container">
+                            <div class="service-price mb-3">—</div>
+                            <p class="card-text text-muted">Estamos trabajando en algo increíble. ¡Muy pronto disponible!</p>
+                            <ul class="list-unstyled mb-4 opacity-50">
+                                <li><i class="fas fa-circle me-2"></i> Característica 1</li>
+                                <li><i class="fas fa-circle me-2"></i> Característica 2</li>
+                                <li><i class="fas fa-circle me-2"></i> Característica 3</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-secondary w-100" disabled>
+                            Coming Soon
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+<!--
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card service-card h-100">
                     <div class="service-header package-4">
@@ -146,7 +221,7 @@ function mainDashboardComponent(register) {
                     </div>
                 </div>
             </div>
-            <!-- Package 5: Pathogenic Variant Package -->
+
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card service-card h-100">
                     <div class="service-header package-5">
@@ -169,9 +244,9 @@ function mainDashboardComponent(register) {
                     </div>
                 </div>
             </div>
-            <!-- Espacio vacío para balance visual -->
+            -->
+
             <div class="col-md-6 col-lg-4 mb-4">
-                <!-- Intencionalmente vacío para mantener el balance -->
             </div>
         </div>
     `
@@ -183,6 +258,13 @@ async function openPaymentModal(selected_package) {
     $("#modalSectionContainer").html(stripeModalComponent(selected_package, modalId));
     $("#" + modalId).modal('show');
     await creatStripePurchaseIntent(selected_package)
+}
+
+
+async function openFirtPaymenMethodModal(selected_package) {
+    const modalId = "paymentMethodModal";
+    $("#modalSectionContainer").html(firstPaymentMethodModal(selected_package, modalId));
+    $("#" + modalId).modal('show');
 }
 
 

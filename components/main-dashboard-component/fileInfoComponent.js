@@ -1,5 +1,4 @@
 function fileInfoComponent(nftData) {
-  console.log("NFT Data:", nftData); // Debugging line to check the data being passed
   const {
     name,
     filename,

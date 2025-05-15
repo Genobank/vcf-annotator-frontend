@@ -1,5 +1,4 @@
 async function getRegisteredUser(user_signature) {
-    console.log("url: ",window.VCF_APP_API)
     const url = new URL(`${window.VCF_APP_API}/get_registered_user`)
     url.searchParams.append('user_signature', user_signature);
     return await fetch(url)
@@ -16,7 +15,6 @@ async function getRegisteredUser(user_signature) {
 
 
 async function getResultsFolder(user_signature, package_string) {
-    console.log("url: ",window.VCF_APP_API)
     const url = new URL(`${window.VCF_APP_API}/get_results_folder`)
     url.searchParams.append('user_signature', user_signature);
     url.searchParams.append('package_string', package_string);

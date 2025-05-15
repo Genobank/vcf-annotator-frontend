@@ -25,6 +25,24 @@
 .package-3 { background: linear-gradient(45deg, #f83600 0%, #f9d423 100%); }
 .package-4 { background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%); }
 .package-5 { background: linear-gradient(45deg, #fa709a 0%, #fee140 100%); }
+.package-coming-soon { background: linear-gradient(45deg, #e7e7e7 0%, #858585 100%); }
+
+
+.no-animation {
+    animation: none !important;
+    transform: none !important;
+}
+
+
+.blured-container {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  
+  /* Opcional: suaviza la transición si la añades/quitas dinámicamente */
+  transition: filter 0.3s ease;
+}
+
+
 .service-icon {
     font-size: 40px;
 }
