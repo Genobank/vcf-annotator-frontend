@@ -1,9 +1,4 @@
 function resultsComponent(path_list){
-    // Keep onlu last part of the path (only files)
-    
-
-    // file_list = path_list.map(path => path.split('/').pop());
-    // return an html of the files in a list
     return /*html */`
         <div class="card w-100 mb-3">
             <div class="card-body">
