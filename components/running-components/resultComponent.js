@@ -1,6 +1,6 @@
 function resultsComponent(path_list){
     // Extract file names from paths
-    const file_list = path_list.map(path => path.split('/').pop());
+    const file_list = path_list;
     
     // Group files by type/extension for better organization
     const sqliteFiles = file_list.filter(file => file.endsWith('.sqlite') || file.endsWith('.db'));
@@ -24,15 +24,15 @@ function resultsComponent(path_list){
     }
     
     // Helper function to create file list items with icons and download functionality
-    function createFileItems(files) {
-        return files.map(file => `
+    function createFileItems(path_list) {
+        return path_list.map(path => `
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div>
-                    <i class="fas ${getFileIcon(file)} me-2 text-primary"></i>
-                    ${file}
+                    <i class="fas ${getFileIcon(path.split('/').pop())} me-2 text-primary"></i>
+                    ${path.split('/').pop()}
                 </div>
                 <div>
-                    <button class="btn btn-sm btn-outline-primary" onclick="downloadFile('${file}')">
+                    <button class="btn btn-sm btn-outline-primary" onclick="downloadFile('${path}')">
                         <i class="fas fa-download me-1"></i> Download
                     </button>
                 </div>
@@ -119,9 +119,10 @@ function resultsComponent(path_list){
 }
 
 // Function to handle individual file download 
-function downloadFile(fileName) {
-    console.log(`Downloading file: ${fileName}`);
-    // Implement actual download functionality
+async function downloadFile(filePath) {
+    const presignedLink = await getPresignedResultFileDownloadLink(getUserToken(), filePath);
+    console.log("this is the presigned link", presignedLink)
+    window.open(presignedLink?.link, '_blank');
 }
 
 // Function to download all result files as a zip
