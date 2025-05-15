@@ -29,10 +29,9 @@ function step2Component() {
 
                     <div class="card border-0 mt-4">
                         <div class="card-body border">
-                            <label for="inputGroupFile03" class="form-label">*Select File (Only .vcf files
-                                allowed)</label>
+                            <label for="inputGroupFile03" class="form-label">*Upload your genetic data file</label>
                             <div class="input-group mb-3">
-                                <input type="file" class="form-control" id="inputGroupFile03" accept=".vcf"
+                                <input type="file" class="form-control" id="inputGroupFile03" accept=".vcf,.txt"
                                     aria-describedby="inputGroupFileAddon03" aria-label="Upload"
                                     onchange="validateRegistrationInputs()">
                                 <button class="btn btn-outline-secondary" type="button" id="btn-inputGroupFile03"
@@ -40,14 +39,16 @@ function step2Component() {
                             </div>
                             <div id="fileInstructions" class="mt-3 text-secondary">
                                 <div class="alert alert-info" role="alert">
-                                    <h5 class="h6 fs-5">Why is this necessary?</h5>
-                                    <p>Genobank.io will process your VCF files as follows:</p>
+                                    <h5 class="h6 fs-5">VCF Annotation and Tokenization</h5>
+                                    <p>Your privacy and data ownership are our top priorities. Here's what happens when you upload your VCF file:</p>
                                     <ol>
-                                        <li>Generate a fingerprint from your uploaded VCF files</li>
-                                        <li>Create an NFT owned by Story (IPAsset) based on this fingerprint</li>
-                                        <li>Store your files securely in our buckets</li>
-                                        <li>Provide access to your files through your wallet</li>
+                                        <li>Your genetic variants are analyzed using OpenCravat, a powerful annotation tool</li>
+                                        <li>Results are securely stored and tokenized as BioNFTs on the Story Protocol blockchain</li>
+                                        <li>A unique digital fingerprint secures your ownership claim (we don't expose your full genetic information)</li>
+                                        <li>You maintain complete control with your digital wallet</li>
+                                        <li>Access your annotated datasets and visualization tools through your dashboard</li>
                                     </ol>
+                                    <p class="mt-2"><strong>Accepted formats:</strong> VCF files (.vcf) or 23andMe text files (.txt)</p>
                                 </div>
                             </div>
                         </div>
@@ -128,19 +129,16 @@ function saveRegisterDraft() {
     }
     if (selectedFile.name && selectedFile.name.toLowerCase().endsWith(".zip")) {
         $("#saveRegisterDraftWarningMessage").html(/*html */ `
-            <div class="alert alert-danger" role="alert">
-                <p class="h5 fs-5">⚠ ZIP File Detected </p>
-                We've detected that you're trying to upload a compressed (.zip) file. To properly process your DNA data claim, we
-                need the uncompressed text (.txt) file.
-                Please follow these steps:
+            <div class="alert alert-warning" role="alert">
+                <p class="h5 fs-5">⚠️ Compressed File Detected</p>
+                <p>We need your uncompressed genetic data file to properly analyze your DNA. Please extract the file first:</p>
                 <ol>
                     <li>Locate the ZIP file on your computer</li>
                     <li>Right-click and select "Extract All..." or use your computer's extraction tool</li>
-                    <li>Find the extracted .txt file in the resulting folder</li>
-                    <li>Return to this page and upload the .txt file instead</li>
+                    <li>Find the extracted file in the resulting folder (look for .vcf or .txt file)</li>
+                    <li>Upload that file instead</li>
                 </ol>
-                This ensures we can properly create your cryptographic DNA fingerprint while keeping your data on your device.
-                Need help? Contact our support team at support@genobank.io
+                <p>Need help? <a href="mailto:support@genobank.io">Contact our support team</a></p>
             </div>
         `);
         return;

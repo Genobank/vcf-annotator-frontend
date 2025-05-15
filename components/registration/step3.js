@@ -1,4 +1,3 @@
-
 const texts = [
     { text: "Processing file...", delay: 2000 },
     { text: "Minting NFT...", delay: 10000 },
@@ -13,43 +12,88 @@ function step3Component() {
     <div class="main-content bg-light first-card starting-card ">
         <div class="card-body" id="consents-content">
             <div class="consent-text">
-                <h5>FORMAL NOTICE OF RESCISSION AND ASSERTION OF DATA RIGHTS</h5>
+                <h5>WEB3 VCF ANNOTATOR SERVICE AND BIONFT TOKENIZATION AGREEMENT</h5>
                 <p><strong>Effective Date: <span id="current-date"></span></strong></p>
                 
-                <p>Notwithstanding any prior consent or agreement, as of the date of acceptance of this contract ("Effective Date"), User expressly rescinds, revokes, and withdraws any and all rights, permissions, consents, licenses, or authorizations previously granted to 23andMe, Inc. ("23andMe"), including its subsidiaries, affiliates, service providers, related entities, successors, and assigns, in connection with any DNA data uploaded, genetic information provided, or Medical Record Information shared, pursuant to 23andMe's Terms of Service, Privacy Statement, Medical Record Privacy Notice, or any other related policy or agreement.</p>
+                <p>By accepting this agreement, User acknowledges and consents to the following terms regarding the analysis, tokenization, and ownership rights of their genomic data through the Web3 VCF Annotator Server developed by GenoBank.io ("GenoBank").</p>
                 
                 <ol>
-                    <li><strong>BASIS FOR RESCISSION:</strong> The basis for this rescission is the initiation of bankruptcy proceedings by 23andMe under Chapter 11 of the United States Bankruptcy Code, which constitutes a material change in circumstances affecting the rights and protections originally relied upon by User. This substantial and unforeseen change in circumstances renders the original consent void or voidable under principles of contract law and applicable data protection regulations.</li>
+                    <li><strong>VCF ANNOTATION SERVICE:</strong> The Web3 VCF Annotator Server is designed specifically to analyze Variant Call Format (VCF) files, providing comprehensive genetic analysis reports and ancestry information. The annotation process utilizes advanced bioinformatics algorithms to analyze genetic variants while ensuring User maintains complete ownership and control of their genetic information throughout the entire process.</li>
                     
-                    <li><strong>IMMEDIATE CESSATION OF USE:</strong> 23andMe shall immediately cease any further use, disclosure, processing, storage, or transfer of User's DNA data, genetic information, Medical Record Information, and any associated personal information, except as strictly required by applicable law or regulatory obligations. This includes but is not limited to research projects, commercial partnerships, and any data licensing arrangements.</li>
+                    <li><strong>BIONFT CREATION AND TOKENIZATION:</strong> Analysis results from the VCF Annotator will be tokenized as a BioNFT™ (Biological Non-Fungible Token) on the Avalanche blockchain, creating an immutable and verifiable digital record of User's genomic data ownership. This tokenization process establishes cryptographic proof of User's genetic data ownership while enabling User to securely share, transfer, or revoke access to their analysis results through blockchain mechanisms.</li>
                     
-                    <li><strong>PROHIBITION ON TRANSFER IN BANKRUPTCY:</strong> User explicitly prohibits the transfer, sale, assignment, or inclusion of their genetic data, DNA samples, or personal information as an asset in any bankruptcy proceeding, restructuring plan, or subsequent sale of 23andMe's assets. User asserts that their personal genetic information constitutes personal property that cannot be liquidated or transferred without explicit new consent.</li>
-                    
-                    <li><strong>DATA PORTABILITY AND DELETION RIGHTS:</strong> Pursuant to applicable data protection laws, including but not limited to the California Consumer Privacy Act (CCPA), General Data Protection Regulation (GDPR), and other relevant regulations, User demands:
+                    <li><strong>STORY PROTOCOL INTEGRATION:</strong> The VCF Annotator incorporates Story Protocol technology to enhance User's control over their BioNFT™. This integration enables:
                         <ol type="a">
-                            <li>The immediate provision of a complete copy of all User's genetic data and personal information in a machine-readable, interoperable format;</li>
-                            <li>Verification of permanent deletion of all User's genetic data, DNA samples, and personal information from all 23andMe systems, databases, backups, and archives following the provision of said data.</li>
+                            <li>Verifiable creation and ownership records of User's genetic analysis;</li>
+                            <li>Configurable permission settings for data access and usage;</li>
+                            <li>Transparent tracking of any authorized data usage;</li>
+                            <li>Enhanced intellectual property protection for User's biological information.</li>
+                        </ol>
+                        This integration provides User with unprecedented control over their genomic analysis while maintaining full sovereignty over their genetic data.
+                    </li>
+                    
+                    <li><strong>TOKENIZATION PROCESS:</strong> Upon completion of VCF analysis, the following tokenization process will occur:
+                        <ol type="a">
+                            <li>Analysis results will be cryptographically secured;</li>
+                            <li>A unique BioNFT™ will be minted on the Avalanche blockchain;</li>
+                            <li>The BioNFT™ will contain metadata linking to User's analysis results;</li>
+                            <li>Ownership of the BioNFT™ will be assigned to User's wallet address;</li>
+                            <li>A permanent record of ownership will be established on the blockchain.</li>
+                        </ol>
+                        This process creates a secure, verifiable record of ownership without transferring any rights to GenoBank or third parties.
+                    </li>
+                    
+                    <li><strong>OWNERSHIP OF GENETIC DATA AND ANALYSIS:</strong> User retains exclusive and complete ownership of:
+                        <ol type="a">
+                            <li>All raw genetic data uploaded to the VCF Annotator;</li>
+                            <li>All analysis results generated by the VCF Annotator;</li>
+                            <li>The BioNFT™ representing ownership of these analysis results;</li>
+                            <li>All rights to control access, sharing, or commercial utilization of their genetic information.</li>
+                        </ol>
+                        The tokenization process reinforces rather than diminishes User's ownership rights.
+                    </li>
+                    
+                    <li><strong>DATA USAGE LIMITATIONS:</strong> GenoBank will only use User's genomic data for:
+                        <ol type="a">
+                            <li>Performing the specific VCF annotation and analysis requested by User;</li>
+                            <li>Creating the blockchain-based BioNFT™ of ownership rights;</li>
+                            <li>Maintaining necessary technical infrastructure for service delivery;</li>
+                            <li>Complying with applicable legal requirements.</li>
+                        </ol>
+                        Any additional usage beyond these specific purposes requires explicit new consent from User.
+                    </li>
+                    
+                    <li><strong>DATA SECURITY AND BLOCKCHAIN BENEFITS:</strong> GenoBank employs multiple layers of security to protect User's genetic data:
+                        <ol type="a">
+                            <li>Industry-standard encryption for data transmission and storage;</li>
+                            <li>Secure API architecture for the VCF Annotator Server;</li>
+                            <li>Blockchain-based verification of data integrity and ownership;</li>
+                            <li>Decentralized ownership records that prevent unauthorized data access or transfer.</li>
+                        </ol>
+                        The blockchain tokenization provides an enhanced security framework by creating an immutable, tamper-proof record of ownership and consent.
+                    </li>
+                    
+                    <li><strong>OWNERSHIP REGISTRATION CONFIRMATION:</strong> By proceeding, User confirms their intention to:
+                        <ol type="a">
+                            <li>Utilize the Web3 VCF Annotator Server for genomic analysis;</li>
+                            <li>Create a BioNFT™ representing ownership of their analysis results;</li>
+                            <li>Establish an immutable blockchain record of their genetic data ownership;</li>
+                            <li>Maintain complete control over how their genetic information and analysis may be used.</li>
                         </ol>
                     </li>
                     
-                    <li><strong>SUCCESSOR LIABILITY:</strong> This rescission and all rights assertions herein shall apply to any successor entity, purchaser of assets, reorganized entity, or other third party that may acquire any portion of 23andMe's assets, operations, or data through bankruptcy proceedings or otherwise.</li>
-                    
-                    <li><strong>RESERVATION OF RIGHTS:</strong> User expressly reserves all rights and remedies available under applicable law, including but not limited to rights under data protection laws, consumer protection statutes, breach of contract claims, and rights to seek damages or equitable relief for any unauthorized use or transfer of User's data.</li>
-                    
-                    <li><strong>NOTICE OF OWNERSHIP REGISTRATION:</strong> User hereby provides notice that they have registered ownership of their genetic data through GenoBank.io's BioNFT™ technology, establishing an immutable record of data ownership on blockchain infrastructure. This registration serves as evidence of User's assertion of exclusive ownership rights in their genetic information.</li>
-                    
-                    <li><strong>GOVERNING LAW:</strong> This rescission shall be governed by the laws of User's jurisdiction of residence and applicable federal laws.</li>
+                    <li><strong>GOVERNING LAW:</strong> This agreement shall be governed by the laws of User's jurisdiction of residence and applicable federal laws governing genetic data privacy and digital assets.</li>
                 </ol>
             </div>
         </div>
         <div class="form-check mt-5  m-3">
             <input class="form-check-input custom-checkbox" type="checkbox" value="" id="flexCheckDefault" onchange="validateAgreement()">
             <label class="form-check-label ms-2" for="flexCheckDefault" >
-                I acknowledge that I have read and understood the above legal notice and wish to rescind all prior consents granted to 23andMe and assert full ownership rights over my genetic data through GenoBank.io's BioNFT™ technology.
+                I acknowledge that I have read and understood the above agreement and consent to the analysis of my VCF data through the Web3 VCF Annotator Server and the creation of a BioNFT™ representing ownership of my analysis results.
             </label>
 
             <div class="d-grid gap-2 mt-3">
-                <button class="btn btn-somos me-md-2" type="button" onclick="finalize()" disabled id="btn-finalize">Sign Legal Notice</button>
+                <button class="btn btn-somos me-md-2" type="button" onclick="finalize()" disabled id="btn-finalize">Sign Agreement</button>
                 <button class="btn btn-secondary me-md-2" type="button" onclick="prevStep()">Back</button>
             </div>
         </div>
@@ -182,7 +226,7 @@ async function finalize() {
     }
     finally{
         $("#btn-finalize").prop('disabled', false);
-        $("#btn-finalize").html(`Consent and ownership`)
+        $("#btn-finalize").html(`Sign Agreement`)
     }
 }
 
