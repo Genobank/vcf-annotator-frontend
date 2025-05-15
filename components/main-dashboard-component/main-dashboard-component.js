@@ -356,7 +356,7 @@ function startAnalysisViewProcess() {
         }
     };
     tick();
-    analysisViewIntervalId = setInterval(tick, 2000);
+    analysisViewIntervalId = setInterval(tick, 10000);
 }
 
 function stopAnalysisViewProcess() {
