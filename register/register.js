@@ -3,6 +3,10 @@ let fileToUpload;
 let isLoadedFile
 let importedFileObj = {};
 let fileUploadedData
+let selectedImportFilePath = "";
+let  hasLocalFile;
+let  hasImportPath;
+
 const pageURL = $(location).attr("href");
 
 

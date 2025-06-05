@@ -1,4 +1,7 @@
-function startFinishViewComponent(filename, statusText = 'Completed', logs='', package_string, color, stripped) {
+function startFinishViewComponent(filename, statusText = 'Completed', logs='', package_string, color, stripped, oc_ipasset_url="", ml_ipasset_url="") {
+
+    console.log("oc_ipasset_url", oc_ipasset_url)
+    console.log("ml_ipasset_url", ml_ipasset_url)
     // Determine if success or error
     const isSuccess = color === 'success';
     const headerClass = isSuccess ? 'bg-success' : 'bg-danger';
@@ -108,6 +111,91 @@ function startFinishViewComponent(filename, statusText = 'Completed', logs='', p
                   </div>
                 </div>
               </div>
+
+              <div class="col-md-12 mt-4">
+                <div class="card border-left-primary h-100">
+                  <div class="card-body">
+                    <h6 class="text-primary border-bottom pb-2">
+                      <i class="fas fa-cubes me-2"></i>
+                      Generated
+                    </h6>
+                    <div class="mt-3 row g-3">
+                      <!-- Card 1: Claude -->
+                      <div class="col-md-4">
+                        <a href="https://claude.genobank.app/" target="_blank" class="text-decoration-none">
+                          <div class="card h-100 shadow-sm border-0 card-hover">
+                            <div class="card-body text-center d-flex flex-column">
+                              <div class="mb-3">
+                                <img src="images/claudeicon.bmp" 
+                                    alt="Claude AI" 
+                                    class="img-fluid rounded-circle mb-2" 
+                                    style="width: 80px; height: 80px;">
+                              </div>
+                              <h6 class="card-title text-primary mb-2">Ask Claude.ai</h6>
+                              <p class="card-text text-muted small mb-auto">About my results</p>
+                              <div class="mt-auto">
+                                <span class="btn btn-primary btn-sm">
+                                  <i class="fas fa-external-link-alt me-1"></i>
+                                  Open
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+
+                      <!-- Card 2: Open Cravat Analysis -->
+                      <div class="col-md-4">
+                        <a href="${oc_ipasset_url}" target="_blank" class="text-decoration-none">
+                          <div class="card h-100 shadow-sm border-0 card-hover">
+                            <div class="card-body text-center d-flex flex-column">
+                              <div class="mb-3">
+                                <img src="images/oc_ipa.jpg" 
+                                    alt="Open Cravat Analysis" 
+                                    class="img-fluid rounded-circle mb-2" 
+                                    style="width: 80px; height: 80px;">
+                              </div>
+                              <h6 class="card-title text-primary mb-2">Open Cravat Analysis</h6>
+                              <p class="card-text text-muted small mb-auto">IPAsset</p>
+                              <div class="mt-auto">
+                                <span class="btn btn-primary btn-sm">
+                                  <i class="fas fa-external-link-alt me-1"></i>
+                                  Open
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+
+                      <!-- Card 3: ML Analysis -->
+                      <div class="col-md-4">
+                        <a href="${ml_ipasset_url}" target="_blank" class="text-decoration-none">
+                          <div class="card h-100 shadow-sm border-0 card-hover">
+                            <div class="card-body text-center d-flex flex-column">
+                              <div class="mb-3">
+                                <img src="images/ml_ipa.jpg" 
+                                    alt="ML Analysis" 
+                                    class="img-fluid rounded-circle mb-2" 
+                                    style="width: 80px; height: 80px;">
+                              </div>
+                              <h6 class="card-title text-primary mb-2">ML Analysis</h6>
+                              <p class="card-text text-muted small mb-auto">IPAsset</p>
+                              <div class="mt-auto">
+                                <span class="btn btn-primary btn-sm">
+                                  <i class="fas fa-external-link-alt me-1"></i>
+                                  Open
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           ` : ''}
           

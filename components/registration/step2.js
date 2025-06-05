@@ -1,6 +1,7 @@
 let userWallet;
 let isValidWallet = false;
 
+
 function step2Component() {
     return /* html */ `
 <div class="main-content ">
@@ -29,13 +30,27 @@ function step2Component() {
 
                     <div class="card border-0 mt-4">
                         <div class="card-body border">
-                            <label for="inputGroupFile03" class="form-label">*Upload your genetic data file</label>
+                            <label for="inputGroupFile03" class="form-label">*select Local File</label>
                             <div class="input-group mb-3">
                                 <input type="file" class="form-control" id="inputGroupFile03" accept=".vcf,.txt"
                                     aria-describedby="inputGroupFileAddon03" aria-label="Upload"
                                     onchange="validateRegistrationInputs()">
                                 <button class="btn btn-outline-secondary" type="button" id="btn-inputGroupFile03"
                                     onclick="removeFileFromInput()">X</button>
+                            </div>
+
+                            <div class="mt-4">
+                                <p>OR import it from your Genobank.io Dashboard</p>
+                                <button class="btn btn-primary" type="button" id="btn-open-import-modal"
+                                    onclick="openImporVCFtModal()">Selecf VCF</button>
+                                <span id="importSelectedFileSection" style="display: none">
+                                    <span>
+                                        <i class="fa-solid fa-file"></i>
+                                        <span id="importSelectedFileName"></span>
+                                        <button class="btn " type="button" id="btn-import-vcf"
+                                        onclick="removeFileFromImportInput()">X</button>
+                                    <span>
+                                </span>
                             </div>
                             <div id="fileInstructions" class="mt-3 text-secondary">
                                 <div class="alert alert-info" role="alert">
@@ -96,15 +111,26 @@ async function useEffect() {
 async function validateRegistrationInputs() {
     const fileInput = $("#inputGroupFile03").prop("files");
     const importedFilesCount = Object.keys(importedFileObj).length;
-    if (fileInput.length > 0 || importedFilesCount > 0) {
+    const hasImportedFile = selectedImportFilePath !== "";
+    const hasLocalFile = fileInput.length > 0;
+    const hasDashboardFile = importedFilesCount > 0;
+    if (hasLocalFile) {
         $("#btn-import-from-genovault").attr("disabled", true);
-        $("#inputGroupFile03").attr("disabled", importedFilesCount > 0);
-        $("#btn-inputGroupFile03").attr("disabled", importedFilesCount > 0);
+        $("#btn-open-import-modal").attr("disabled", true);
+    } else if (hasDashboardFile || hasImportedFile) {
+        $("#inputGroupFile03").attr("disabled", true);
+        $("#btn-inputGroupFile03").attr("disabled", true);
+        if (hasDashboardFile) {
+            $("#btn-open-import-modal").attr("disabled", true);
+        }
+        if (hasImportedFile) {
+            $("#btn-import-from-genovault").attr("disabled", true);
+        }
     } else {
-        // Reactivar ambos si no hay archivos
         $("#btn-import-from-genovault").attr("disabled", false);
+        $("#btn-open-import-modal").attr("disabled", false);
         $("#inputGroupFile03").attr("disabled", false);
-        $("#btn-inputGroupFile03").attr("disabled", false);
+        $("#btn-import-vcf").attr("disabled", false);
     }
 }
 
@@ -113,21 +139,30 @@ function saveRegisterDraft() {
     const fileInput = document.getElementById("inputGroupFile03").files[0];
     console.log("fileinput", fileInput);
     let selectedFile = fileInput;
+    
+    // Solo manejar archivos locales o del dashboard anterior en selectedFile
     if (!selectedFile) {
         const importedFileNames = Object.keys(importedFileObj);
         if (importedFileNames.length === 1) {
             selectedFile = importedFileObj[importedFileNames[0]].content;
         }
     }
-    if (selectedFile === undefined) {
+    
+    // Validación: debe haber exactamente UNA opción seleccionada
+    hasLocalFile = selectedFile !== undefined;
+    hasImportPath = selectedImportFilePath !== "";
+    
+    if (!hasLocalFile && !hasImportPath) {
         $("#saveRegisterDraftWarningMessage").html(/*html */ `
             <div class="alert alert-danger" role="alert">
-                Please select a file
+                Please select a file (either upload a local file OR select from import)
             </div>
         `);
         throw new Error("Please select a file to upload");
     }
-    if (selectedFile.name && selectedFile.name.toLowerCase().endsWith(".zip")) {
+    
+    // Si hay archivo local, validar que no sea ZIP
+    if (hasLocalFile && selectedFile.name && selectedFile.name.toLowerCase().endsWith(".zip")) {
         $("#saveRegisterDraftWarningMessage").html(/*html */ `
             <div class="alert alert-warning" role="alert">
                 <p class="h5 fs-5">⚠️ Compressed File Detected</p>
@@ -143,11 +178,17 @@ function saveRegisterDraft() {
         `);
         return;
     }
-    fileToUpload = selectedFile;
+    
+    // Solo setear fileToUpload si hay archivo local
+    if (hasLocalFile) {
+        fileToUpload = selectedFile;
+    }
+    
     registerFormData = {
         user_signature: getUserToken(),
         domain: "VCFANNOTATOR",
     };
+    
     nextStep();
 }
 
@@ -263,7 +304,7 @@ function removeFileFromInputFileList(safeId) {
 function removeFileFromInput() {
     const fileInput = document.getElementById("inputGroupFile03");
     fileInput.value = "";
-    $("#btn-import-from-genovault").attr("disabled", false);
+    $("#btn-import-vcf").attr("disabled", false);
     $("#importedFilesDiv").html("");
     validateRegistrationInputs();
 }
@@ -271,3 +312,93 @@ function removeFileFromInput() {
 function releaseinputFile() {
     $("#inputGroupFile03").attr("disabled", false);
 }
+
+
+async function openImporVCFtModal(){
+    // const userSignature = getUserToken()
+    // const vcfFilesPath = await getUserVCFToImport (userSignature)
+    // console.log(vcfFilesPath)
+
+    $("#modalContainer").html(modalImportVCF())
+    $("#modalContainer").modal("show")
+
+}
+
+
+function modalImportVCF(){
+    return /*html */`
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">VCF Import</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body-import">
+          Loading files...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" disabled id="selectImportVCFButton" onclick="selectVCFFile()">Select this file</button>
+        </div>
+      </div>
+    </div>
+    `
+}
+
+async function renderAvailableFiles(){
+    try{
+        const userSignature = getUserToken()
+        const vcfFilesPath = await getUserVCFToImport (userSignature)
+        let filesDivHtml = ""
+        for (vcfFile of vcfFilesPath){
+            console.log(vcfFile)
+            filesDivHtml += /*html */`
+            <div class="form-check" onclick="enableSelectButton()">
+                <input class="form-check-input" type="radio" name="radioDefault" id="${vcfFile}">
+                <label class="form-check-label" for="${vcfFile}">
+                    ${vcfFile}
+                </label>
+            </div>
+            `
+        }
+
+        $("#modal-body-import").html(filesDivHtml)
+    } catch(e){
+        $("#modal-body-import").html("Error during getting VCF files")
+    }
+}
+
+function enableSelectButton(){
+    $("#selectImportVCFButton").attr("disabled", false)
+}
+
+function selectVCFFile() {
+    const selectedRadio = document.querySelector('input[name="radioDefault"]:checked');
+    if (selectedRadio) {
+        selectedImportFilePath = selectedRadio.id;
+        const fileName = selectedImportFilePath.split('/').pop();
+        document.getElementById("importSelectedFileName").textContent = fileName;
+        $("#importSelectedFileSection").show();
+        $("#modalContainer").modal("hide");
+        validateRegistrationInputs();
+    } else {
+        console.error("No se ha seleccionado ningún archivo");
+    }
+}
+
+
+function removeFileFromImportInput() {
+    selectedImportFilePath = "";
+    document.getElementById("importSelectedFileName").textContent = "";
+    $("#importSelectedFileSection").hide();
+    validateRegistrationInputs();
+    console.log("Archivo importado removido");
+}
+
+
+document.addEventListener('shown.bs.modal', function (event) {
+    if (event.target.id === 'modalContainer') {
+        renderAvailableFiles();
+    }
+});
+

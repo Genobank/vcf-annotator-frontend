@@ -16,10 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (isCompleted) {
-                const localRegistration = getLocalRegistration();
-                const filename = localRegistration?.register?.filename;
+                const registration = await getRegisteredUser(getUserToken())
+                console.log(registration)
+                const filename = registration?.register?.filename;
                 $("#analysisViewContainer").html(
-                    startFinishViewComponent(filename, job.status, job?.logs.reverse().join('<br>'), package, "success", false)
+                    startFinishViewComponent(filename, job.status, job?.logs.reverse().join('<br>'), package, "success", false, registration?.register?.sqlite_ip_asset, registration?.register?.cav_ip_asset)
                 );
                 const resultFiles = await getResultsFolder(getUserToken(), package);
                 $("#resultsFolderContainer").html(resultsComponent(resultFiles))
@@ -337,8 +338,9 @@ function startAnalysisViewProcess() {
                 return;
             }
             else if (status === "Completed") {
+                const registration = await getRegisteredUser(getUserToken())
                 $("#analysisViewContainer").html(
-                    startFinishViewComponent(filename, status, job.logs[0], job.package, "success", false)
+                    startFinishViewComponent(filename, status, job.logs[0], job.package, "success", false, registration?.register?.sqlite_ip_asset, registration?.register?.cav_ip_asset)
                 );
                 stopAnalysisViewProcess();
                 const resultFiles = await getResultsFolder(getUserToken(), job.package);

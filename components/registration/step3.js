@@ -194,9 +194,15 @@ async function finalize() {
         const consentsText = getConsentsText();
         const signedConsents = await signPersonalMessage(consentsText)
         registerFormData["signedConsents"] = signedConsents
+        console.log("\n\n file to upload", fileToUpload)
         const data = new FormData();
         data.append("data", JSON.stringify(registerFormData));
-        data.append("file", fileToUpload);
+        if (hasLocalFile){
+            data.append("file", fileToUpload);
+        }
+        if (hasImportPath){
+            data.append("import_file_path", selectedImportFilePath);
+        }
         const response = await postAxiosRegisterUser(data, onUploadingFile);
         if (response.status === 200){
             fileUploadedData = response.data
